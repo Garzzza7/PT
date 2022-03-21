@@ -4,5 +4,5 @@
 
 | Name Surname (initials) | GUID                                     |
 | ----------------------- | ---------------------------------------- |
-| Piotr Czapla            | `{1e07b814-d3d8-408c-934e-c99d7c8449da}` |
-| Piotr Hynasiński        | `{4af504b0-1391-43e0-b92f-ad540bb3d287}` |
+| Piotr Czapla            | `{85D0299F-182A-4C4D-9812-D48F3B56DF34}` |
+| Piotr Hynasiński        | `{6A77FDFB-8823-495E-A294-2A6B26754F33}` |
