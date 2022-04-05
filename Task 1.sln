@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{10444C03-A21E-4CBB-9683-2F8D70918C65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "Task1\DataLayer\DataLayer.csproj", "{10444C03-A21E-4CBB-9683-2F8D70918C65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{5F803EB2-24CB-462F-9091-B99D71C6BA71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "Task1\LogicLayer\LogicLayer.csproj", "{5F803EB2-24CB-462F-9091-B99D71C6BA71}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "TestProject1\UnitTest.csproj", "{D5FC452C-1BDC-47A3-B4F9-560B90797559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "Task1\TestProject1\UnitTest.csproj", "{D5FC452C-1BDC-47A3-B4F9-560B90797559}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
