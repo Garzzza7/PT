@@ -19,7 +19,7 @@ namespace LogicLayer
             {
                 string fruit = fruits[random.Next(fruits.Length)];
 
-                products.Add(new Product() { Name = fruit, Price = random.Next(10) }); 
+                products.Add(new Product(fruit, random.Next(10)) /*{ Name = fruit, Price = random.Next(10) }*/); 
             }
 
             return products;

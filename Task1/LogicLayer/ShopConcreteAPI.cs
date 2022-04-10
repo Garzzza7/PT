@@ -23,8 +23,8 @@ namespace LogicLayer
 
         public ShopConcreteAPI(ISupplier supplier)
         {
-            _employees.Add(new Employee() {  Name = "Jan", Surname = "Kowalski"});
-            _employees.Add(new Employee() {  Name = "Aleksandra", Surname = "Nowak"});
+            _employees.Add(new Employee("Jan", "Kowalski") /*{  Name = "Jan", Surname = "Kowalski"}*/);
+            _employees.Add(new Employee("Aleksandra", "Nowak") /*{  Name = "Aleksandra", Surname = "Nowak"}*/);
 
             _supplier = supplier;
 
@@ -81,12 +81,17 @@ namespace LogicLayer
             invoice.Items = new List<LineItem>();
             foreach(var (key, val) in productCalculations )
             {
-                invoice.Items.Add(new LineItem()
+                invoice.Items.Add(new LineItem(key,val.Count,val.Sum)
+                /*
                 {
                     ProductName = key,
                     Quantity = val.Count,
                     Sum = val.Sum
-                });
+                }
+                */
+                );
+                
+                
             }
 
             invoice.Sum = invoice.Items.Sum(x => x.Sum);

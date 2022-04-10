@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DataLayer
 {
 
-    public class Invoice
+    public class Invoice : IInvoice
     {
         public DateTime DateTime { get; set; }
         public string InvoiceNumber { get; set; }
