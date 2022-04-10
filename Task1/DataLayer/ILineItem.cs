@@ -8,10 +8,11 @@ namespace DataLayer
 {
     public interface ILineItem 
     {
-         string ProductName { get; set; }
-         int Quantity { get; set; }
-         decimal Sum { get; set; } 
+         string productName { get; set; }
+         int quantity { get; set; }
+         decimal price { get; set; }
+         Category category { get; set; }
     }
-
+    public enum Category {}
 
 }

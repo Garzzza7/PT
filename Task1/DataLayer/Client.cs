@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {  
-    public class Employee : IEmployee
+    public class Client : IClient
     { 
         public string Name { get; set; }
         public string Surname { get; set; }
 
-        public Employee(string name, string surname)
+        public Client(string name, string surname)
         {
             Name = name;
             Surname = surname;
+        }
+        override string introduce()
+        {
+            return Name + " " + Surname;
         }
     } 
 

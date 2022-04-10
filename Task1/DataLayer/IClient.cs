@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public interface IEmployee
+    public interface IClient
     {
          string Name { get; set; }
          string Surname { get; set; }
     }
+    string introduce();
 }

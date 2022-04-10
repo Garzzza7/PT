@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public interface ISupplier
+    public interface IState
     {
-        List<Product> GetProducts();
+        string state { get; set; }
+        string ShowState();
     }
+
 }
+
+ 

@@ -7,15 +7,31 @@ using System.Threading.Tasks;
 namespace DataLayer
 {
     public class LineItem : ILineItem {
-        public string ProductName { get; set; }
-        public int Quantity { get; set; }
-        public decimal Sum { get; set; }
+        private string productName { get; set; }
+        private int quantity { get; set; }
+        private decimal price { get; set; }
+        private Category category { get; set; }
 
-        public LineItem(string productName, int quantity, decimal sum)
+        public string ProductName => productName;
+        public int Quantity => quantity;
+        public decimal Price => price;
+        public Category Category => category;
+
+        public LineItem(string _productName, int _quantity, decimal _price, Category _category )
         {
-            ProductName = productName;
-            Quantity = quantity;
-            Sum = sum;
+            productName= _productName;
+            quantity= _quantity;
+            price= _price;
+            category= _category;
+        }
+
+        public enum Category
+        {
+            vegeteble,
+            fuit,
+            beverage,
+            food,
+            appliance
         }
     }
 

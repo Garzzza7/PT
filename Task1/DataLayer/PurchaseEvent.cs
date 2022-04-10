@@ -6,10 +6,28 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class PurchaseEvent
+    public class PurchaseEvent : IEvent
     {
-        public Invoice Invoice { get; set; }    
-        public DateTime DateTime { get; set; }
+        private Client client { get; set; }
+
+        private  LineItem lineitem { get; set; }
+
+        private State state { get; set; }
+
+        private  DateTime Timestamp { get; set; }
+
+        public PurchaseEvent(Client client,LineItem lineitem,State state,DateTime Timestamp)
+        {
+            this.client = client;
+            this.lineitem = lineitem;
+            this.state = state;
+            this.Timestamp = Timestamp;
+        }
+        public override toString()
+        {
+            return client+","+lineitem+","+state+","+Timestamp;
+        }
 
     }
+  
 }
