@@ -14,7 +14,7 @@ namespace ShopSystemTest
         public RepositoryTest()
         {
             ContentGenerator generator = new ContentGenerator();
-            repository = new Repository(generator.GenerateContent());
+            repository = new Repository(generator.Create());
         }
 
 
@@ -27,7 +27,7 @@ namespace ShopSystemTest
             Assert.IsTrue(repository.GetAllStates().Count.Equals(2));
         }
 
-        //ClientTests:
+        /*-----------------------------------------------------------------------------------------ClientTestD-----------------------------------------------------------------------------------------*/
 
         [TestMethod]
         public void AddClients()
@@ -39,23 +39,17 @@ namespace ShopSystemTest
 
         [TestMethod]
         public void RemoveClient()
-        {   // existing
+        {   
             Client client1 = repository.GetClientById(1);
             repository.DeleteClient(client1);
             Assert.ThrowsException<KeyNotFoundException>(
                 () => repository.GetClientById(1));
-            // non existing
+          
             Client client2 = new Client(3, "K", "M");
             Assert.ThrowsException<KeyNotFoundException>(
                 () => repository.DeleteClient(client2));
         }
 
-        [TestMethod]
-        public void NoSuchClientId()
-        {
-            Assert.IsTrue(repository.NoSuchClientId(5));
-            Assert.IsFalse(repository.NoSuchClientId(2));
-        }
 
         [TestMethod]
         public void GetAllClientsIds()
@@ -64,7 +58,8 @@ namespace ShopSystemTest
             CollectionAssert.AreEqual(repository.GetAllClientsIds(), idList);
         }
 
-        //ProductTests:
+        /*-----------------------------------------------------------------------------------------ProductTestD-----------------------------------------------------------------------------------------*/
+
 
         [TestMethod]
         public void AddProduct()
@@ -82,12 +77,10 @@ namespace ShopSystemTest
             Assert.ThrowsException<KeyNotFoundException>(
                 () => repository.GetProductById(2));
         }
-
-
         [TestMethod]
         public void NoSuchProductId()
         {
-            Assert.IsTrue(repository.NoSuchProductId(11));
+            Assert.IsTrue(repository.NoSuchProductId(2147483647));
             Assert.IsFalse(repository.NoSuchProductId(1));
         }
 
@@ -99,11 +92,12 @@ namespace ShopSystemTest
             CollectionAssert.AreEqual(idListFromProducts, idList);
         }
 
-        //EventTests:
+        /*-----------------------------------------------------------------------------------------EventTestD-----------------------------------------------------------------------------------------*/
+
 
         [TestMethod]
-        public void CheckClientEvents()
-        {   //is it ok to check all 3 methods in one test like that?
+        public void CheckClientPurchaseEvents()
+        {   
             Client client = new Client(9, "Sherlock", "Holmes");
             Product product = new Product(15, 90, Category.books);
             State state = new State(product);
@@ -114,47 +108,20 @@ namespace ShopSystemTest
             Assert.IsFalse(repository.GetAllEvents().Contains(eventPurchase));
         }
 
-        //StateTests
+        /*-----------------------------------------------------------------------------------------StateTestD-----------------------------------------------------------------------------------------*/
+
 
         [TestMethod]
         public void CheckStates()
         {
-            Product product = new Product(11, 30, Category.electronics);
+            Product product = new Product(69, 420, Category.electronics);
             State state = new State(product);
-            //delete before it's added
-            Assert.ThrowsException<Exception>(
-               () => repository.DeleteState(state));
+            Assert.ThrowsException<Exception>(() => repository.DeleteState(state));
             Assert.IsTrue(repository.NoSuchState(state));
-            //add
             repository.AddState(state);
             Assert.IsTrue(repository.GetAllStates().Contains(state));
-            //delete after its added
             repository.DeleteState(state);
             Assert.IsFalse(repository.GetAllStates().Contains(state));
         }       
-
-       [TestMethod] 
-        public void RandomContent()
-        {
-            RandomContentGenerator random = new RandomContentGenerator();
-            repository = new Repository(random.GenerateContent());
-
-            Assert.IsTrue(IsUnique(repository.GetAllClientsIds()));
-            Assert.IsTrue(IsUnique(repository.GetAllProductIds()));
-        }
-
-        private bool IsUnique(IEnumerable<int> list)
-        {
-            HashSet<int> uniqueValues = new HashSet<int>();
-
-            foreach (int id in list)
-            {
-                if (!uniqueValues.Add(id))
-                {
-                    return false;
-                }
-            }
-            return true;
-        } 
     }
 }

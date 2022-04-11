@@ -4,8 +4,10 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public interface IContentGenerator
+    public class IClient
     {
-        DataContext Create();
+         int id;
+         String name;
+         String surname;
     }
 }

@@ -4,11 +4,15 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public class Client
+    public class Client : IClient
     {
         private int id;
         private String name;
         private String surname;
+
+        public int Id => id;
+        public String Name => name;
+        public String Surname => surname;
 
         public Client(int _id, String _name, String _surname)
         {
@@ -17,8 +21,6 @@ namespace ShopSystem.Data
             surname = _surname;
         }
 
-        public int Id => id;
-        public String Name => name;
-        public String Surname => surname;
+
     }
 }

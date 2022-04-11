@@ -10,6 +10,10 @@ namespace ShopSystem.Data
         private Client client;
         private DateTime purchaseDate;
 
+        public State State => state;
+        public Client Client => client;
+        public DateTime PurchaseDate => purchaseDate;
+
         public IEvent(State _state, Client _client)
         {
             state = _state;
@@ -17,8 +21,5 @@ namespace ShopSystem.Data
             purchaseDate = DateTime.Now;
         }
 
-        public State State => state;
-        public Client Client => client; 
-        public DateTime PurchaseDate => purchaseDate;
     }
 }

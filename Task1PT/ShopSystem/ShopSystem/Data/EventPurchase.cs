@@ -6,7 +6,6 @@ namespace ShopSystem.Data
 {
     public class EventPurchase : IEvent 
     {
-        public EventPurchase(State state, Client client) 
-            : base(state, client) { }
+        public EventPurchase(State state, Client client) : base(state, client) { }
     }
 }

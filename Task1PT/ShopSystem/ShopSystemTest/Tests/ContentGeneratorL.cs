@@ -7,12 +7,12 @@ namespace ShopSystemTest
 {
     class ContentGenerator : IContentGenerator
     {
-        public DataContext GenerateContent()
+        public DataContext Create()
         {
             DataContext context = new DataContext();
 
-            Client client1 = new Client(1, "L", "P");
-            Client client2 = new Client(2, "R", "P");
+            Client client1 = new Client(1, "Piotr", "Czapla");
+            Client client2 = new Client(2, "Piotr", "Hynasiński");
 
             context.clients.Add(client1);
             context.clients.Add(client2);

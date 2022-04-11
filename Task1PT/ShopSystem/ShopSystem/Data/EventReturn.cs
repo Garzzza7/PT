@@ -6,8 +6,7 @@ namespace ShopSystem.Data
 {
     public class EventReturn : IEvent
     {
-        public EventReturn(State state, Client client) 
-            : base(state, client) { }
+        public EventReturn(State state, Client client) : base(state, client) { }
     }
 }
 
