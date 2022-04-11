@@ -25,7 +25,7 @@ namespace ShopSystem.Logic
             irepo.AddEvent(new EventPurchase(state, client));
             irepo.AddState(state);
         }
-        //this one belongs to ProductDataService but was added cuz it is essential for what is below to work
+
         public List<IEvent> GetAllProductEvents(Product product)
         {
             List<IEvent> listofeventinterfaces = new List<IEvent>();
@@ -40,14 +40,15 @@ namespace ShopSystem.Logic
             return listofeventinterfaces;
         }
 
-
         public void ReturnProduct(Product product, int clientId)
         {
             Client client = irepo.GetClientById(clientId);
 
             List<IEvent> productEvents = GetAllProductEvents(product);
 
-            if (productEvents.Last<IEvent>() is EventReturn) {throw new Exception("This program is yet to be purchased!!!");}
+            if (productEvents.Last<IEvent>() is EventReturn) {
+                throw new Exception("This program is about to be purchased");
+            }
 
             State state = new State(product);
 

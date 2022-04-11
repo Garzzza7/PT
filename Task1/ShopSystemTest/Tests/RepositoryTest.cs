@@ -18,7 +18,6 @@ namespace ShopSystemTest
         }
 
 
-        
         [TestMethod]
         public void CheckInitialState()
         {
@@ -27,7 +26,7 @@ namespace ShopSystemTest
             Assert.IsTrue(repository.GetAllStates().Count.Equals(2));
         }
 
-        /*-----------------------------------------------------------------------------------------ClientTestD-----------------------------------------------------------------------------------------*/
+        //ClientTest
 
         [TestMethod]
         public void AddClients()
@@ -58,7 +57,7 @@ namespace ShopSystemTest
             CollectionAssert.AreEqual(repository.GetAllClientsIds(), idList);
         }
 
-        /*-----------------------------------------------------------------------------------------ProductTestD-----------------------------------------------------------------------------------------*/
+        //ProductTest
 
 
         [TestMethod]
@@ -92,7 +91,7 @@ namespace ShopSystemTest
             CollectionAssert.AreEqual(idListFromProducts, idList);
         }
 
-        /*-----------------------------------------------------------------------------------------EventTestD-----------------------------------------------------------------------------------------*/
+        //EventTest
 
 
         [TestMethod]
@@ -108,7 +107,7 @@ namespace ShopSystemTest
             Assert.IsFalse(repository.GetAllEvents().Contains(eventPurchase));
         }
 
-        /*-----------------------------------------------------------------------------------------StateTestD-----------------------------------------------------------------------------------------*/
+        //StateTest
 
 
         [TestMethod]

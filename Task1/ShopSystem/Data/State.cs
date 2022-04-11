@@ -6,14 +6,12 @@ namespace ShopSystem.Data
 {
 	public class State
 	{
-		private Product product;
+		public Product Product { get; set; }
 
 		public State(Product _product)
-        {
-			product = _product;
-        }
-
-		public Product Product => product;
+		{
+			Product = _product;
+		}
     }
 }
 

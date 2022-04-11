@@ -10,8 +10,6 @@ namespace ShopSystem.Logic
     {
         private IRepository irepo;
 
-
-
         public ProductDataService(IRepository irepo)
         {
             this.irepo = irepo;

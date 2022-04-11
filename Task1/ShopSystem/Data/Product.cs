@@ -7,20 +7,15 @@ namespace ShopSystem.Data
 {
     public class Product
     {
-        private int id;
-        private double price;
-        private Category category;
-
-        public int Id => id;
-        public double Price => price;
-        public Category Category => category;
-
+        public int Id { get; set; }
+        public double Price { get; set; }
+        public Category Category { get; set; }
 
         public Product(int _id, double _price, Category _category)
         {
-            id = _id;
-            price = _price;
-            category = _category;
+            Id = _id;
+            Price = _price;
+            Category = _category;
         }
     }
 

@@ -10,10 +10,9 @@ namespace ShopSystem.Logic
     {
         private IRepository irepo;
 
-        public ClientDataService(IRepository irepo) {this.irepo = irepo;}
+        public ClientDataService(IRepository irepo) { this.irepo = irepo; }
 
-
-        public void AddClient(int id, String name, String surname) {irepo.AddClient(new Client(id, name, surname));}
+        public void AddClient(int id, String name, String surname) { irepo.AddClient(new Client(id, name, surname)); }
 
         public void DeleteClient(Client client) {irepo.DeleteClient(client);}
 

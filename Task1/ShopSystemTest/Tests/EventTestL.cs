@@ -48,7 +48,7 @@ namespace ShopSystemTest
                 Assert.IsTrue(productEvents[2].Client.Id.Equals(1));
                 Assert.IsTrue(productEvents[2].State.Product.Id.Equals(1));
             }
-            catch(System.NullReferenceException ex) { }
+            catch(NullReferenceException ex) { }
 
         }
     }

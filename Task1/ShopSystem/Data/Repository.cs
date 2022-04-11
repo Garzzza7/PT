@@ -5,17 +5,14 @@ namespace ShopSystem.Data
 {
     public class Repository : IRepository
     {
-        private DataContext dataContext;
+        public DataContext DataContext { get; set; }
 
         public Repository(DataContext dataContext)
         {
-            this.dataContext = dataContext;
+            this.DataContext = dataContext;
         }
 
-
-
-
-        // --------------- Client -----------------  
+        //Client
 
         public void AddClient(Client client)
         {
@@ -24,38 +21,38 @@ namespace ShopSystem.Data
                 throw new Exception("Client with an id " + client.Id + " already exists");
             }
 
-            dataContext.clients.Add(client);
+            DataContext.Clients.Add(client);
         }
 
         public void DeleteClient(Client client)
         {
             if (NoSuchClientId(client.Id))
             {
-                throw new KeyNotFoundException("Client with an id " + client.Id + " is not found");
+                throw new KeyNotFoundException("Client with an id " + client.Id + " does not exist");
             }
 
-            dataContext.clients.Remove(client);
+            DataContext.Clients.Remove(client);
         }
 
         public Client GetClientById(int id)
         {
             if (NoSuchClientId(id))
             {
-                throw new KeyNotFoundException("Client with an id " + id + " is not found");
+                throw new KeyNotFoundException("Client with an id " + id + " does not exist");
             }
-            return dataContext.clients.Find(client => client.Id == id);
+            return DataContext.Clients.Find(client => client.Id == id);
         }
 
         public List<Client> GetAllClients()
         {
-            return dataContext.clients;
+            return DataContext.Clients;
         }
 
         public List<int> GetAllClientsIds() 
         {
             List<int> ids = new List<int>();
 
-            foreach(Client client in dataContext.clients)
+            foreach(Client client in DataContext.Clients)
             {
                 ids.Add(client.Id);
             }
@@ -64,13 +61,10 @@ namespace ShopSystem.Data
 
         public bool NoSuchClientId(int id)
         {
-            return !dataContext.clients.Exists(c => c.Id == id);
+            return !DataContext.Clients.Exists(c => c.Id == id);
         }
 
-
-
-
-        // --------------- Product -----------------  
+        //Product
 
         public void AddProduct(Product product)
         {
@@ -78,73 +72,66 @@ namespace ShopSystem.Data
             {
                 throw new Exception("Product with an id " + product.Id + " already exists");
             }
-            dataContext.products.Add(product.Id, product);
+            DataContext.Products.Add(product.Id, product);
         }
 
         public void DeleteProduct(int id)
         {
             if (NoSuchProductId(id))
             {
-                throw new KeyNotFoundException("Product with an id " + id + " is not found");
+                throw new KeyNotFoundException("Product with an id " + id + " does not exist");
             }
 
-            dataContext.products.Remove(id);
+            DataContext.Products.Remove(id);
         }
 
         public Product GetProductById(int id)
         {
             if (NoSuchProductId(id))
             {
-                throw new KeyNotFoundException("Product with an id " + id + " is not found");
+                throw new KeyNotFoundException("Product with an id " + id + " does not exist");
             }
 
-            return dataContext.products[id];
+            return DataContext.Products[id];
         }
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return dataContext.products.Values;
+            return DataContext.Products.Values;
         }
 
         public IEnumerable<int> GetAllProductIds()
         {
-            return dataContext.products.Keys;
+            return DataContext.Products.Keys;
         }
 
         public bool NoSuchProductId(int id)
         {
-            return !dataContext.products.ContainsKey(id);
+            return !DataContext.Products.ContainsKey(id);
         }
 
-   
-
-
-
-        // --------------- Event ---------------- 
+        //Event
 
         public void AddEvent(IEvent IEvent)
         {
-            dataContext.events.Add(IEvent);
+            DataContext.Events.Add(IEvent);
         }
 
         public void DeleteEvent(IEvent IEvent)
         {
-            dataContext.events.Remove(IEvent);
+            DataContext.Events.Remove(IEvent);
         }
 
         public List<IEvent> GetAllEvents()
         {
-            return dataContext.events;
+            return DataContext.Events;
         }
 
-
-
-
-        // --------------- State ---------------  
+        //State
 
         public void AddState(State state)
         {
-            dataContext.states.Add(state);
+            DataContext.States.Add(state);
         }
 
         public void DeleteState(State state)
@@ -154,18 +141,17 @@ namespace ShopSystem.Data
                 throw new Exception();
             }
 
-            dataContext.states.Remove(state);
+            DataContext.States.Remove(state);
         }
 
         public List<State> GetAllStates()
         {
-            return dataContext.states;
+            return DataContext.States;
         }
-
 
         public bool NoSuchState(State state)
         {
-            return !dataContext.states.Exists(s => s.Equals(state));
+            return !DataContext.States.Exists(s => s.Equals(state));
         } 
 
     }

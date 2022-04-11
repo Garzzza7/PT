@@ -14,8 +14,8 @@ namespace ShopSystemTest
             Client client1 = new Client(1, "Piotr", "Czapla");
             Client client2 = new Client(2, "Piotr", "Hynasiński");
 
-            context.clients.Add(client1);
-            context.clients.Add(client2);
+            context.Clients.Add(client1);
+            context.Clients.Add(client2);
 
             // add items 
 
@@ -23,9 +23,9 @@ namespace ShopSystemTest
             Product product2 = new Product(2, 30, Category.drugs);
             Product product3 = new Product(3, 40, Category.electronics);
 
-            context.products.Add(1, product1);
-            context.products.Add(2, product2);
-            context.products.Add(3, product3);
+            context.Products.Add(1, product1);
+            context.Products.Add(2, product2);
+            context.Products.Add(3, product3);
 
             // add events and states 
 
@@ -35,11 +35,11 @@ namespace ShopSystemTest
             EventPurchase eventPurchase1 = new EventPurchase(state1, client1);
             EventPurchase eventPurchase2 = new EventPurchase(state2, client2);
 
-            context.states.Add(state1);
-            context.states.Add(state2);
+            context.States.Add(state1);
+            context.States.Add(state2);
 
-            context.events.Add(eventPurchase1);
-            context.events.Add(eventPurchase2);
+            context.Events.Add(eventPurchase1);
+            context.Events.Add(eventPurchase2);
 
             return context;
         }

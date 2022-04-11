@@ -72,7 +72,7 @@ namespace ShopSystemTest
                 List<IEvent> productEvents = clientDataService.GetAllClientEvents(1);
                 Assert.IsTrue(productEvents[0].Client.Equals(client));
             }
-            catch (System.NullReferenceException ex) { }
+            catch (NullReferenceException ex) { }
 
         }
     }
