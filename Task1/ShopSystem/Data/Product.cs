@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public class Product
+    internal class Product:IProduct
     {
         public int Id { get; set; }
         public double Price { get; set; }
@@ -17,16 +17,5 @@ namespace ShopSystem.Data
             Price = _price;
             Category = _category;
         }
-    }
-
-    public enum Category
-    {
-        food, 
-        electronics,
-        drugs,
-        furniture,
-        games,
-        books,
-        miscellaneous
     }
 }

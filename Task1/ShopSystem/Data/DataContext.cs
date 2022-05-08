@@ -4,13 +4,14 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public class DataContext
+    internal class DataContext
     {
-        private Dictionary<int, Product> products = new Dictionary<int, Product>();
-        private List<IEvent> events = new List<IEvent>();
-        private List<State> states = new List<State>();
-        private List<Client> clients = new List<Client>();
+        public Dictionary<int, IProduct> products = new Dictionary<int, IProduct>();
+        public List<IEvent> events = new List<IEvent>();
+        public List<IState> states = new List<IState>();
+        public List<IClient> clients = new List<IClient>();
 
+        /*
         public Dictionary<int, Product> Products {
             get { return products; }
         }
@@ -25,7 +26,7 @@ namespace ShopSystem.Data
         public List<Client> Clients { 
             get { return clients; }
         }
-
+        */
 
     }
 }

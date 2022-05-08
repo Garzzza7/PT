@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public class Client
+    internal class Client:IClient
     {
         public int Id { get; set; }
         public string Name { get; set; }

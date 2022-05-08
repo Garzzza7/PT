@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ShopSystem.Data
 {
-    public class Repository : IRepository
+    internal class Repository : IRepository
     {
-        public DataContext DataContext { get; set; }
+        private DataContext DataContext;
 
         public Repository(DataContext dataContext)
         {
@@ -14,45 +14,45 @@ namespace ShopSystem.Data
 
         //Client
 
-        public void AddClient(Client client)
+        public void AddClient(IClient client)
         {
             if (!NoSuchClientId(client.Id))
             {
                 throw new Exception("Client with an id " + client.Id + " already exists");
             }
 
-            DataContext.Clients.Add(client);
+            DataContext.clients.Add(client);
         }
 
-        public void DeleteClient(Client client)
+        public void DeleteClient(IClient client)
         {
             if (NoSuchClientId(client.Id))
             {
                 throw new KeyNotFoundException("Client with an id " + client.Id + " does not exist");
             }
 
-            DataContext.Clients.Remove(client);
+            DataContext.clients.Remove(client);
         }
 
-        public Client GetClientById(int id)
+        public IClient GetClientById(int id)
         {
             if (NoSuchClientId(id))
             {
                 throw new KeyNotFoundException("Client with an id " + id + " does not exist");
             }
-            return DataContext.Clients.Find(client => client.Id == id);
+            return DataContext.clients.Find(client => client.Id == id);
         }
 
-        public List<Client> GetAllClients()
+        public List<IClient> GetAllClients()
         {
-            return DataContext.Clients;
+            return DataContext.clients;
         }
 
         public List<int> GetAllClientsIds() 
         {
             List<int> ids = new List<int>();
 
-            foreach(Client client in DataContext.Clients)
+            foreach(IClient client in DataContext.clients)
             {
                 ids.Add(client.Id);
             }
@@ -61,18 +61,18 @@ namespace ShopSystem.Data
 
         public bool NoSuchClientId(int id)
         {
-            return !DataContext.Clients.Exists(c => c.Id == id);
+            return !DataContext.clients.Exists(c => c.Id == id);
         }
 
         //Product
 
-        public void AddProduct(Product product)
+        public void AddProduct(IProduct product)
         {
             if (!NoSuchProductId(product.Id))
             {
                 throw new Exception("Product with an id " + product.Id + " already exists");
             }
-            DataContext.Products.Add(product.Id, product);
+            DataContext.products.Add(product.Id, product);
         }
 
         public void DeleteProduct(int id)
@@ -82,76 +82,84 @@ namespace ShopSystem.Data
                 throw new KeyNotFoundException("Product with an id " + id + " does not exist");
             }
 
-            DataContext.Products.Remove(id);
+            DataContext.products.Remove(id);
         }
 
-        public Product GetProductById(int id)
+        public IProduct GetProductById(int id)
         {
             if (NoSuchProductId(id))
             {
                 throw new KeyNotFoundException("Product with an id " + id + " does not exist");
             }
 
-            return DataContext.Products[id];
+            return DataContext.products[id];
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<IProduct> GetAllProducts()
         {
-            return DataContext.Products.Values;
+            return DataContext.products.Values;
         }
 
         public IEnumerable<int> GetAllProductIds()
         {
-            return DataContext.Products.Keys;
+            return DataContext.products.Keys;
         }
 
         public bool NoSuchProductId(int id)
         {
-            return !DataContext.Products.ContainsKey(id);
+            return !DataContext.products.ContainsKey(id);
         }
 
         //Event
 
         public void AddEvent(IEvent IEvent)
         {
-            DataContext.Events.Add(IEvent);
+            if (DataContext.events.Contains(IEvent))
+            {
+                throw new Exception();
+            }
+            DataContext.events.Add(IEvent);
         }
 
         public void DeleteEvent(IEvent IEvent)
         {
-            DataContext.Events.Remove(IEvent);
+            if (!DataContext.events.Contains(IEvent))
+            {
+                throw new Exception();
+            }
+            DataContext.events.Remove(IEvent);
         }
 
         public List<IEvent> GetAllEvents()
         {
-            return DataContext.Events;
+            return DataContext.events;
         }
 
         //State
 
-        public void AddState(State state)
+        public void AddState(IState state)
         {
-            DataContext.States.Add(state);
+            DataContext.states.Add(state);
         }
 
-        public void DeleteState(State state)
+        public void DeleteState(IState state)
         {
             if (NoSuchState(state))
             {
                 throw new Exception();
             }
 
-            DataContext.States.Remove(state);
+            DataContext.states.Remove(state);
         }
 
-        public List<State> GetAllStates()
+        public List<IState> GetAllStates()
         {
-            return DataContext.States;
+            return DataContext.states;
         }
 
-        public bool NoSuchState(State state)
+        public bool NoSuchState(IState state)
         {
-            return !DataContext.States.Exists(s => s.Equals(state));
+            return !DataContext.states.Exists(s => s.Equals(state));
         } 
 
     }

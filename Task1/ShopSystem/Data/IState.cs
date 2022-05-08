@@ -4,8 +4,9 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public interface IContentGenerator
+    public interface IState
     {
-        DataLayerAbstractAPI Create();
+         IProduct Product { get; set; }
+
     }
 }

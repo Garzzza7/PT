@@ -4,9 +4,16 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public class EventReturn : IEvent
+    internal class EventReturn : IEvent
     {
-        public EventReturn(State state, Client client) : base(state, client) { }
+        public IState State { get; set; }
+        public IClient Client { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public EventReturn(IState state1, IClient client1)
+        {
+            this.State = state1;
+            this.Client = client1;
+        }
     }
 }
 

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace ShopSystem.Data
 {
-	public class State
+	internal class State:IState
 	{
 		public Product Product { get; set; }
 

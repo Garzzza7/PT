@@ -4,21 +4,21 @@ using System.Text;
 
 namespace ShopSystem.Data
 {
-    public interface IRepository
+    internal interface IRepository
     {
-        IEnumerable<Product> GetAllProducts();
+        IEnumerable<IProduct> GetAllProducts();
         IEnumerable<int> GetAllProductIds();
-        Product GetProductById(int id);
-        void AddProduct(Product product);
+        IProduct GetProductById(int id);
+        void AddProduct(IProduct product);
         void DeleteProduct(int id);
 
 
 
-        List<Client> GetAllClients();
+        List<IClient> GetAllClients();
         List<int> GetAllClientsIds();
-        Client GetClientById(int id);
-        void AddClient(Client client);
-        void DeleteClient(Client client);
+        IClient GetClientById(int id);
+        void AddClient(IClient client);
+        void DeleteClient(IClient client);
 
 
 
@@ -28,8 +28,8 @@ namespace ShopSystem.Data
 
 
 
-        List<State> GetAllStates();
-        void AddState(State state);
-        void DeleteState(State state);
+        List<IState> GetAllStates();
+        void AddState(IState state);
+        void DeleteState(IState state);
     }
 }
