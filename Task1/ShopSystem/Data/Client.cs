@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ShopSystem.Data.API;
 
 namespace ShopSystem.Data
 {
-    internal class Client:IClient
+    internal class Client : IClient
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
+﻿using ShopSystem.Data.API;
 
 namespace ShopSystem.Data
 {
-    internal class Product:IProduct
+    internal class Product : IProduct
     {
         public int Id { get; set; }
         public double Price { get; set; }

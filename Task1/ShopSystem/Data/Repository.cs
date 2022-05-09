@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using ShopSystem.Data.API;
+
 namespace ShopSystem.Data
 {
     internal class Repository : IRepository

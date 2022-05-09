@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
+using ShopSystem.Data.API;
 using ShopSystem.Data;
-namespace ShopSystem.Logic
+
+namespace ShopSystem.Logic.API
 {
     public abstract class LogicLayerAPI
     {

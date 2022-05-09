@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using ShopSystem.Data;
+
+using ShopSystem.Logic.API;
+using ShopSystem.Data.API;
+
 namespace ShopSystem.Logic
 {
     public class Service

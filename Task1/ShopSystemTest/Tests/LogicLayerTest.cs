@@ -1,18 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShopSystem.Logic;
-using ShopSystem.Data;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 
+using ShopSystem.Logic.API;
+using ShopSystem.Logic;
 
-namespace ShopSystemTest
+
+namespace ShopSystemTest.Logic
 {
     [TestClass]
     public class LogicLayerTest
     {
 
-        
         private LogicLayerAPI logic;
         private Service service;
 

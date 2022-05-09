@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using ShopSystem.Data.API;
 
 namespace ShopSystem.Data
 {
-	internal class State:IState
+	internal class State : IState
 	{
 		public IProduct Product { get; set; }
 

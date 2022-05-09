@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+using ShopSystem.Data.API;
 
 namespace ShopSystem.Data
 {

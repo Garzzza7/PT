@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
+using ShopSystem.Data.API;
 using ShopSystem.Data;
 
-namespace ShopSystemTest
+namespace ShopSystemTest.Generator
 {
     internal class Test_Client : IClient
     {

@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShopSystem.Logic;
-using ShopSystem.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
+using ShopSystem.Data.API;
+using ShopSystemTest.Generator;
 
 
-namespace ShopSystemTest
+namespace ShopSystemTest.Data
 {
     [TestClass]
     public class DataLayerTest

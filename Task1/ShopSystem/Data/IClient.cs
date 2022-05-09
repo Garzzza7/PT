@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShopSystem.Data
+﻿namespace ShopSystem.Data.API
 {
     public interface IClient
     {
