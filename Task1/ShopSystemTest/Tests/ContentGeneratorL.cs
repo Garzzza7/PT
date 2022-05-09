@@ -5,43 +5,87 @@ using ShopSystem.Data;
 
 namespace ShopSystemTest
 {
+    internal class Test_Client : IClient
+    {
+        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Surname { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Test_Client(int _id, string _name, string _surname)
+        {
+            this.Id = _id;
+            this.Name = _name;
+            this.Surname = _surname;
+        }
+    }
+    internal class Test_Product : IProduct
+    {
+        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public double Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Category Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Test_Product(int _id, double _price, Category _category)
+        {
+            this.Id = _id;
+            this.Price = _price;
+            this.Category = _category;
+        }
+    }
+    internal class Test_State : IState
+    {
+        public IProduct Product { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Test_State(IProduct _product)
+        {
+            this.Product = _product;
+        }
+    }
+    internal class Test_EventPurchase : IEvent
+    {
+        public IState State { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IClient Client { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public DateTime PurchaseDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Test_EventPurchase(IState state1, IClient client1)
+        {
+            this.State = state1;
+            this.Client = client1;
+        }
+    }
+
     class ContentGenerator : IContentGenerator
     {
-        public DataContext Create()
+        public DataLayerAbstractAPI Create()
         {
-            DataContext context = new DataContext();
 
-            Client client1 = new Client(1, "Piotr", "Czapla");
-            Client client2 = new Client(2, "Piotr", "Hynasiński");
+            DataLayerAbstractAPI dataLayerAbstractAPI = DataLayerAbstractAPI.aPI();
+            IClient client1 = new Test_Client(1, "Piotr", "Czapla");
+            IClient client2 = new Test_Client(2, "Piotr", "Hynasiński");
 
-            context.Clients.Add(client1);
-            context.Clients.Add(client2);
+            dataLayerAbstractAPI.AddClient(client1);
+            dataLayerAbstractAPI.AddClient(client2);
 
             // add items 
 
-            Product product1 = new Product(1, 20, Category.books);
-            Product product2 = new Product(2, 30, Category.drugs);
-            Product product3 = new Product(3, 40, Category.electronics);
+            IProduct product1 = new Test_Product(1, 20, Category.books);
+            IProduct product2 = new Test_Product(2, 30, Category.drugs);
+            IProduct product3 = new Test_Product(3, 40, Category.electronics);
 
-            context.Products.Add(1, product1);
-            context.Products.Add(2, product2);
-            context.Products.Add(3, product3);
+            dataLayerAbstractAPI.AddProduct(product1);
+            dataLayerAbstractAPI.AddProduct(product2);
+            dataLayerAbstractAPI.AddProduct(product3);
 
             // add events and states 
 
-            State state1 = new State(product1);
-            State state2 = new State(product2);
+            IState state1 = new Test_State(product1);
+            IState state2 = new Test_State(product2);
 
-            EventPurchase eventPurchase1 = new EventPurchase(state1, client1);
-            EventPurchase eventPurchase2 = new EventPurchase(state2, client2);
+            IEvent eventPurchase1 = new Test_EventPurchase(state1, client1);
+            IEvent eventPurchase2 = new Test_EventPurchase(state2, client2);
 
-            context.States.Add(state1);
-            context.States.Add(state2);
+            dataLayerAbstractAPI.AddState(state1);
+            dataLayerAbstractAPI.AddState(state2);
+            dataLayerAbstractAPI.AddEvent(eventPurchase1);
+            dataLayerAbstractAPI.AddEvent(eventPurchase2);
 
-            context.Events.Add(eventPurchase1);
-            context.Events.Add(eventPurchase2);
 
-            return context;
+            return dataLayerAbstractAPI;
         }
     }
 }

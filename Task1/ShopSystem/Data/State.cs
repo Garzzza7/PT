@@ -6,9 +6,9 @@ namespace ShopSystem.Data
 {
 	internal class State:IState
 	{
-		public Product Product { get; set; }
+		public IProduct Product { get; set; }
 
-		public State(Product _product)
+		public State(IProduct _product)
 		{
 			Product = _product;
 		}
