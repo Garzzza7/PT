@@ -34,27 +34,63 @@ namespace ShopSystem.Logic
             }
             public override void AddClient(int id, String name, String surname)
             {
-                IClient client = new Client(id, name, surname);
-                _api.AddClient(client);
+                IClient client = _api.GetClientById(id);
+
+                if (client != null)
+                {
+                    throw new Exception($"Client with id {id} already exists");
+                }
+
+                IClient newClient = new Client(id, name, surname);
+                _api.AddClient(newClient);
             }
             public override void DeleteClient(IClient client)
             {
+                IClient client = _api.GetClientById(client.Id);
+
+                if (client != null)
+                {
+                    throw new Exception($"Client with id {client.Id} already exists");
+                }
+
                 _api.DeleteClient(client);
             }
             public override List<IClient> GetAllClients()
             {
-                return _api.GetAllClients();
+                
             }
             public override IClient GetClient(int id)
             {
-                return _api.GetClientById(id);
+                IClient client = _api.GetClientById(id);
+
+                if (client == null)
+                {
+                    throw new Exception($"Client with id {id} does not exist");
+                }
+
+                return client;
             }
             public override List<IEvent> GetAllClientEvents(int id)
             {
-                return _api.GetAllEvents();
+                
             }
             public override void PurchaseProduct(int productId, int clientId)
             {
+                IProduct product = _api.GetProductById(productId);
+                IClient client = _api.GetClientById(clientId);
+
+                if (product == null)
+                {
+                    throw new Exception($"Product with id {productId} does not exist");
+                }
+
+                if (client == null)
+                {
+                    throw new Exception($"Client with id {clientId} does not exist");
+                }
+
+                _api.AddState(new State(product))
+                _api.AddEvent(new EventPurchase())
 
             }
             public override List<IEvent> GetAllProductEvents(IProduct product)
@@ -67,19 +103,20 @@ namespace ShopSystem.Logic
             }
             public override void AddProduct(int id, double price, Category category)
             {
-
+                IProduct product = new Product(id, price, category);
+                _api.AddProduct(product);
             }
             public override void DeleteProduct(int id)
             {
-
+                _api.DeleteProduct(id);
             }
             public override IEnumerable<IProduct> GetAllProducts()
             {
-                return null;
+                return _api.GetAllProducts();
             }
             public override IProduct GetProductById(int id)
             {
-                return null;
+                return _api.GetProductById(id);
             }
 
         }

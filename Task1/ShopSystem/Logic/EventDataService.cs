@@ -47,7 +47,7 @@ namespace ShopSystem.Logic
             List<IEvent> productEvents = GetAllProductEvents(product);
 
             if (productEvents.Last<IEvent>() is EventReturn) {
-                throw new Exception("This program is about to be purchased");
+                throw new Exception("This product is yet to be purchased");
             }
 
             State state = new State(product);
