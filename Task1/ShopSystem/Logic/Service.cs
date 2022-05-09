@@ -4,7 +4,7 @@ using System.Text;
 using ShopSystem.Data;
 namespace ShopSystem.Logic
 {
-    internal class Service
+    public class Service
     {
         private LogicLayerAPI logicLayer;
         public Service(LogicLayerAPI lol)
