@@ -1,4 +1,4 @@
-﻿namespace ShopSystem.Data.API
+﻿namespace ShopSystem
 {
     public enum Category
     {
