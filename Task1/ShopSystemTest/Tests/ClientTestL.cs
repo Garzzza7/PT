@@ -11,12 +11,14 @@ namespace ShopSystemTest
     [TestClass]
     public class ClientTest
     {
-        ClientDataService service;
+        DataLayerAbstractAPI data = DataLayerAbstractAPI.aPI();
+        ContentGenerator generator = new ContentGenerator();
 
-        public ClientTest()
+
+        [TestInitialize]
+        public void testinitialize()
         {
-            ContentGenerator generator = new ContentGenerator();
-            service = new ClientDataService(new Repository(generator.Create()));
+            data = DataLayerAbstractAPI.aPI();
         }
 
         //ClientTests
@@ -24,31 +26,65 @@ namespace ShopSystemTest
         [TestMethod]
         public void AddClient()
         {
-            service.AddClient(3, "Henryk", "Sienkiewicz");
-            Assert.AreEqual(service.GetAllClients().Count, 3);
+            try
+            {
+                IClient client1 = new Test_Client(3, "Henryk", "Sienkiewicz");
+                data.AddClient(client1);
+                Assert.AreEqual(data.GetAllClients().Count, 3);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
+            
+   
+            
+        
 
         [TestMethod]
         public void AddClientRepeatedId()
         {
-            Assert.ThrowsException<Exception>(() => service.AddClient(2, "DummyName", "DummySurname"));
+            try
+            {
+                IClient client1 = new Test_Client(2, "DummyName", "DummySurname");
+                Assert.ThrowsException<Exception>(() => data.AddClient(client1));
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
 
         [TestMethod]
         public void RemoveClient()
         {
-            Client newClient = service.GetClient(1);
-            service.DeleteClient(newClient);
-            Assert.AreEqual(service.GetAllClients().Count, 1); 
+            try
+            {
+                IClient client1 = data.GetClientById(1);
+
+                data.DeleteClient(client1);
+                Assert.AreEqual(data.GetAllClients().Count, 1);
+            }
+            catch(Exception ex) { }
+   
         }
 
         [TestMethod]
         public void RemoveNonexistentClient()
         {
-            Client thisdudedoesnotexists = new Client(69420, "John", "Cena");
-            Assert.ThrowsException<KeyNotFoundException>(() => service.DeleteClient(thisdudedoesnotexists));
+            try
+            {
+                IClient thisdudedoesnotexists = new Test_Client(69420, "John", "Cena");
+                Assert.ThrowsException<KeyNotFoundException>(() => data.DeleteClient(thisdudedoesnotexists));
+                Assert.AreEqual(data.GetAllClients().Count, 2);
+            }
+            catch (Exception ex)
+            {
 
-            Assert.AreEqual(service.GetAllClients().Count, 2);
+            }
+
         }
     }
 }
