@@ -7,9 +7,9 @@ namespace ShopSystemTest
 {
     internal class Test_Client : IClient
     {
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Surname { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Id { get ; set ; }
+        public string Name { get ; set ; }
+        public string Surname { get; set ; }
         public Test_Client(int _id, string _name, string _surname)
         {
             this.Id = _id;

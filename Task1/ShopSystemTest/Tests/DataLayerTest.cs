@@ -27,15 +27,15 @@ namespace ShopSystemTest
         public void AddClient()
         {
             try
-            {
+           {
                 IClient client1 = new Test_Client(3, "Henryk", "Sienkiewicz");
                 data.AddClient(client1);
                 Assert.AreEqual(data.GetAllClients().Count, 3);
             }
-            catch (Exception ex)
-            {
+           catch (Exception ex)
+           {
 
-            }
+           }
         }
         
         [TestMethod]

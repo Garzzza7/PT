@@ -11,8 +11,8 @@ namespace ShopSystem.Data
         public List<IState> states = new List<IState>();
         public List<IClient> clients = new List<IClient>();
 
-        /*
-        public Dictionary<int, Product> Products {
+        
+        public Dictionary<int, IProduct> Products {
             get { return products; }
         }
 
@@ -20,13 +20,13 @@ namespace ShopSystem.Data
             get { return events; }
         }
 
-        public List<State> States { 
+        public List<IState> States { 
             get { return states; }
         }
-        public List<Client> Clients { 
+        public List<IClient> Clients { 
             get { return clients; }
         }
-        */
+       
 
     }
 }
