@@ -19,9 +19,9 @@ namespace ShopSystemTest
     }
     internal class Test_Product : IProduct
     {
-        public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public double Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Category Category { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Id { get; set; }
+        public double Price { get; set; }
+        public Category Category { get; set; }
         public Test_Product(int _id, double _price, Category _category)
         {
             this.Id = _id;
@@ -31,7 +31,7 @@ namespace ShopSystemTest
     }
     internal class Test_State : IState
     {
-        public IProduct Product { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IProduct Product { get; set; }
         public Test_State(IProduct _product)
         {
             this.Product = _product;
@@ -39,9 +39,9 @@ namespace ShopSystemTest
     }
     internal class Test_EventPurchase : IEvent
     {
-        public IState State { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IClient Client { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public DateTime PurchaseDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IState State { get; set; }
+        public IClient Client { get; set; }
+        public DateTime PurchaseDate { get; set; }
         public Test_EventPurchase(IState state1, IClient client1)
         {
             this.State = state1;
