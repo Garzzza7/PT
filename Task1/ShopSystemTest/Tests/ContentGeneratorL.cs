@@ -1,5 +1,5 @@
 ﻿using ShopSystem.Data.API;
-
+using ShopSystem;
 namespace ShopSystemTest.Generator
 {
     class ContentGenerator : IContentGenerator

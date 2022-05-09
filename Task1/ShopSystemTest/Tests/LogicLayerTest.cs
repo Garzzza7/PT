@@ -1,15 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-
-using ShopSystem.Logic.API;
 using ShopSystem.Logic;
-
-
-namespace ShopSystemTest.Logic
+using ShopSystem.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using ShopSystem.Logic.API;
+using ShopSystem;
+namespace ShopSystemTest
 {
     [TestClass]
     public class LogicLayerTest
     {
+
 
         private LogicLayerAPI logic;
         private Service service;
@@ -19,68 +21,36 @@ namespace ShopSystemTest.Logic
         {
             logic = LogicLayerAPI.CreateLayer();
             service = new Service(logic);
-           
+
+        }
+        [TestMethod]
+        public void AddProductTest()
+        {
+            Category cat = Category.books;
+            Assert.AreEqual(service.GetAllProducts().Count(), 0);
+            service = new Service(logic);
+            service.AddProduct(2, 3, cat);
+            Assert.AreEqual(service.GetAllProducts().Count(), 1);
         }
 
         [TestMethod]
-        public void Addclienttest()
+        public void DeleteNonExistingProductTest()
         {
-            
-            service.AddClient(2, "Jamie", "Olivier");
-            Assert.AreEqual(service.GetClient(2).Name, "Jamie");
-            Assert.AreEqual(service.GetAllClients().Count(), 1);
-        }
-
-        [TestMethod]
-        public void RemoveClienttest()
-        {
-            Assert.AreEqual(service.GetAllClients().Count(), 0);
-            service.AddClient(2, "Jamie", "Olivier");
-           
-        }
-
-        [TestMethod]
-        public void test1()
-        {
-
-        }
-
-        [TestMethod]
-        public void test2()
-        {
-
-        }
-
-        [TestMethod]
-        public void test3()
-        {
-
+            Assert.ThrowsException<KeyNotFoundException>(() => service.DeleteProduct(69420));
         }
 
         [TestMethod]
         public void test4()
         {
+            service = new Service(logic);
+            Category cat = Category.books;
+            Assert.AreEqual(service.GetAllProducts().Count(), 0);
+            service.AddProduct(2, 3, cat);
+            service.GetProductById(2);
+            Assert.AreEqual(service.GetAllProducts().Count(), 1);
+            Assert.AreEqual(service.GetProductById(2).Price, 3);
 
         }
-
-        [TestMethod]
-        public void test5()
-        {
-
-        }
-
-        [TestMethod]
-        public void test6()
-        {
-
-        }
-
-        [TestMethod]
-        public void test7()
-        {
-
-        }
-
 
     }
 }

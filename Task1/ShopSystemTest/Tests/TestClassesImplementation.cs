@@ -1,7 +1,7 @@
 ﻿using System;
 
 using ShopSystem.Data.API;
-
+using ShopSystem;
 namespace ShopSystemTest
 {
     internal class Test_Client : IClient
