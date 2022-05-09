@@ -9,7 +9,11 @@ namespace ShopSystem.Data
 
         public Repository(DataContext dataContext)
         {
-            this.DataContext = dataContext;
+            this.DataContext = new DataContext();
+        }
+        public Repository()
+        {
+            this.DataContext = new DataContext();
         }
 
         //Client

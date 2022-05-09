@@ -40,10 +40,10 @@ namespace ShopSystem.Data
         private class DataLayerImp : DataLayerAbstractAPI
         {
             private Repository repo;
-           // public DataLayerImp()
-           // {
-           //     this.repo = new Repository;
-           // }
+            public DataLayerImp()
+          {
+                this.repo = new Repository();
+            }
             public  override IEnumerable<IProduct> GetAllProducts()
             {
                 return this.repo.GetAllProducts();

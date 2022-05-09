@@ -22,5 +22,60 @@ namespace ShopSystemTest
             service = new Service(logic);
         }
 
+        [TestMethod]
+        public void Addclienttest()
+        {
+            
+        }
+
+        [TestMethod]
+        public void RemoveClienttest()
+        {
+
+        }
+        /*
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+
+        [TestMethod]
+        public void test()
+        {
+
+        }
+        */
+
     }
 }
