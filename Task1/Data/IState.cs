@@ -1,8 +1,7 @@
-﻿namespace ShopSystem.Data.API
+﻿namespace Data
 {
     public interface IState
     {
          IProduct Product { get; set; }
-
     }
 }

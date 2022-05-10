@@ -1,4 +1,4 @@
-﻿namespace ShopSystem.Data.API
+﻿namespace Data
 {
     public interface IContentGenerator
     {
