@@ -4,19 +4,18 @@ namespace Data
 {
     public abstract class DataLayerAbstractAPI
     {
-        public static DataLayerAbstractAPI DataLayerImplementation()
-        {
-            return new DataLayerConcrete();
-        }
+        private Repository repository;
         public abstract void AddProduct(IProduct product);
         public abstract void DeleteProduct(IProduct product);
         public abstract IProduct GetProduct(int id);
+        public abstract bool ProductExists(int id);
         public abstract List<IProduct> GetAllProducts();
         public abstract List<int> GetAllProductIds();
 
         public abstract void AddClient(IClient client);
         public abstract void DeleteClient(IClient client);
         public abstract IClient GetClient(int id);
+        public abstract bool ClientExists(int id);
         public abstract List<IClient> GetAllClients();
         public abstract List<int> GetAllClientsIds();
 
@@ -28,22 +27,15 @@ namespace Data
         public abstract void DeleteState(IState state);
         public abstract List<IState> GetAllStates();
 
-
-
-        public static DataLayerAbstractAPI CreateLayer()
+        public static DataLayerAbstractAPI CreateLayer(IContent inc = default(Content))
         {
-            return new DataLayerConcrete();
-        }
-        public static DataLayerAbstractAPI CreateLayer(IContentGenerator contentGenerator)
-        {
-            return contentGenerator.Create();
+            return new DataLayerConcrete(inc == null ? new Content() : inc);
         }
         private class DataLayerConcrete : DataLayerAbstractAPI
         {
-            private Repository repository;
-            public DataLayerConcrete()
+            public DataLayerConcrete(IContent nc)
             {
-                repository = new Repository();
+                repository = new Repository(nc);
             }
 
             //Product
@@ -59,6 +51,10 @@ namespace Data
             public override IProduct GetProduct(int id)
             {
                 return repository.DataContext.GetProduct(id);
+            }
+            public override bool ProductExists(int id)
+            {
+                return repository.DataContext.ProductExists(id);
             }
             public  override List<IProduct> GetAllProducts()
             {
@@ -82,6 +78,10 @@ namespace Data
             public override IClient GetClient(int id)
             {
                 return repository.DataContext.GetClient(id);
+            }
+            public override bool ClientExists(int id)
+            {
+                return repository.DataContext.ClientExists(id);
             }
             public override List<IClient> GetAllClients()
             {

@@ -4,10 +4,18 @@ namespace Data
 {
     internal class DataContext
     {
-        private List<IProduct> products = new List<IProduct>();
-        private List<IEvent> events = new List<IEvent>();
-        private List<IState> states = new List<IState>();
-        private List<IClient> clients = new List<IClient>();
+        private List<IProduct> products;
+        private List<IEvent> events;
+        private List<IState> states;
+        private List<IClient> clients;
+
+        internal DataContext(List<IClient> _client, List<IEvent> _events, List<IProduct> _products, List<IState> _states)
+        {
+            clients = _client;
+            events = _events;
+            products = _products;
+            states = _states;
+        }
 
         //Client
 
@@ -24,6 +32,11 @@ namespace Data
         public IClient GetClient(int id)
         {
             return clients.Find(client => client.Id == id);
+        }
+
+        public bool ClientExists(int id)
+        {
+            return clients.Contains(GetClient(id));
         }
 
         public List<IClient> GetAllClients()
@@ -57,6 +70,11 @@ namespace Data
         public IProduct GetProduct(int id)
         {
             return products[id];
+        }
+
+        public bool ProductExists(int id)
+        {
+            return products.Contains(GetProduct(id));
         }
 
         public List<IProduct> GetAllProducts()

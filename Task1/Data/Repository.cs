@@ -5,15 +5,15 @@ namespace Data
 {
     internal class Repository
     {
-        internal DataContext DataContext { get; set; }
+        internal DataContext DataContext;
 
-        internal Repository(DataContext dataContext)
+        public Repository(IContent content)
         {
-            DataContext = dataContext;
-        }
-        internal Repository()
-        {
-            DataContext = new DataContext();
+            DataContext = new DataContext(
+                content.NewClients()
+                ,content.NewEvents()
+                ,content.NewProducts()
+                ,content.NewStates());
         }
     }
 }

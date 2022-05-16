@@ -7,40 +7,32 @@ namespace Logic
 {
     internal class Service
     {
-        private DataLayerAbstractAPI dataLayer;
-
-        internal Service(DataLayerAbstractAPI dataLayer)
-        {
-            this.dataLayer = dataLayer;
-        }
-
         //Client 
 
-        internal void AddClient(int id, string name, string surname)
+        internal void AddClient(int id, string name, string surname, DataLayerAbstractAPI dataLayer)
         {
-            IClient client = dataLayer.GetClient(id);
-
-            if (client != null)
+            if (!dataLayer.ClientExists(id))
+            {
+                dataLayer.AddClient(new Client(id, name, surname));
+            }
+            else
             {
                 throw new Exception($"Client with id {id} already exists");
             }
-
-            IClient newClient = new Client(id, name, surname);
-            dataLayer.AddClient(newClient);
         }
-        internal void DeleteClient(int id)
+        internal void DeleteClient(int id, DataLayerAbstractAPI dataLayer)
         {
-            IClient clientToRemove = dataLayer.GetClient(id);
-
-            if (clientToRemove == null)
+            if (dataLayer.ClientExists(id))
             {
-                throw new Exception($"Client with id {clientToRemove.Id} does not exist");
+                dataLayer.DeleteClient(dataLayer.GetClient(id));
             }
-
-            dataLayer.DeleteClient(clientToRemove);
+            else
+            {
+                throw new Exception($"Client with id {id} does not exist");
+            }
         }
 
-        internal IClient GetClient(int id)
+        internal IClient GetClient(int id, DataLayerAbstractAPI dataLayer)
         {
             IClient client = dataLayer.GetClient(id);
 
@@ -52,19 +44,29 @@ namespace Logic
             return client;
         }
 
-        internal List<IClient> GetAllClients()
+        internal bool ClientExists(int id, DataLayerAbstractAPI dataLayer)
+        {
+            if (dataLayer.GetClient(id) == null)
+            {
+                throw new Exception($"Client does not exist");
+            }
+
+            return true;
+        }
+
+        internal List<IClient> GetAllClients(DataLayerAbstractAPI dataLayer)
         {
             return dataLayer.GetAllClients();
         }
 
-        internal List<IEvent> GetAllClientEvents(int id)
+        internal List<IEvent> GetAllClientEvents(int id, DataLayerAbstractAPI dataLayer)
         {
             return dataLayer.GetAllEvents().Where(x => x.Client == dataLayer.GetClient(id)).ToList();
         }
 
         //Product events
 
-        internal void PurchaseProduct(int productId, int clientId)
+        internal void PurchaseProduct(int productId, int clientId, DataLayerAbstractAPI dataLayer)
         {
             IProduct product = dataLayer.GetProduct(productId);
             IClient client = dataLayer.GetClient(clientId);
@@ -83,11 +85,22 @@ namespace Logic
             dataLayer.AddEvent(new EventPurchase(dataLayer.GetAllStates().FirstOrDefault(x => x.Product == product), client));
 
         }
-        internal List<IEvent> GetAllProductEvents(IProduct product)
+
+        internal bool ProductExists(int id, DataLayerAbstractAPI dataLayer)
+        {
+            if (dataLayer.GetProduct(id) == null)
+            {
+                throw new Exception($"Product does not exist");
+            }
+
+            return true;
+        }
+
+        internal List<IEvent> GetAllProductEvents(IProduct product, DataLayerAbstractAPI dataLayer)
         {
             return dataLayer.GetAllEvents().Where(x => x.State.Product == product).ToList();
         }
-        internal void ReturnProduct(IProduct product, int clientId)
+        internal void ReturnProduct(IProduct product, int clientId, DataLayerAbstractAPI dataLayer)
         {
             IClient client = dataLayer.GetClient(clientId);
 
@@ -107,27 +120,33 @@ namespace Logic
 
         //Product
 
-        internal void AddProduct(int id, double price, string category)
+        internal void AddProduct(int id, double price, string category, DataLayerAbstractAPI dataLayer)
         {
-            IProduct product = new Product(id, price, category);
-            dataLayer.AddProduct(product);
-        }
-        internal void DeleteProduct(int id)
-        {
-            IProduct productToRemove = dataLayer.GetProduct(id);
-
-            if (productToRemove != null)
+            if (!dataLayer.ProductExists(id))
             {
-                throw new Exception($"Client with id {id} does not exist");
+                dataLayer.AddProduct(new Product(id, price, category));
             }
-
-            dataLayer.DeleteProduct(productToRemove);
+            else
+            {
+                throw new Exception($"Product with id {id} already exists");
+            }
         }
-        internal List<IProduct> GetAllProducts()
+        internal void DeleteProduct(int id, DataLayerAbstractAPI dataLayer)
+        {
+            if (dataLayer.ProductExists(id))
+            {
+                dataLayer.DeleteProduct(dataLayer.GetProduct(id));
+            }
+            else
+            {
+                throw new Exception($"Product with id {id} does not exist");
+            }
+        }
+        internal List<IProduct> GetAllProducts(DataLayerAbstractAPI dataLayer)
         {
             return dataLayer.GetAllProducts();
         }
-        internal IProduct GetProductById(int id)
+        internal IProduct GetProduct(int id, DataLayerAbstractAPI dataLayer)
         {
             IProduct product = dataLayer.GetProduct(id);
 
