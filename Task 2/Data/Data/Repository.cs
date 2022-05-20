@@ -12,8 +12,7 @@ namespace Data
             DataContext = new DataContext(
                 content.NewClients()
                 ,content.NewEvents()
-                ,content.NewProducts()
-                ,content.NewStates());
+                ,content.NewProducts());
         }
     }
 }

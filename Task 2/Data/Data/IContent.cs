@@ -6,7 +6,6 @@ namespace Data
     {
         List<IClient> NewClients();
         List<IEvent> NewEvents();
-        List<IState> NewStates();
         List<IProduct> NewProducts();
     }
 
@@ -14,7 +13,6 @@ namespace Data
     {
         private List<IClient> Clients = new List<IClient> ();
         private List<IEvent> Events = new List<IEvent> ();
-        private List<IState> States = new List<IState>(); 
         private List<IProduct> Products = new List<IProduct> ();    
 
         public List<IClient> NewClients()
@@ -30,11 +28,6 @@ namespace Data
         public List<IProduct> NewProducts()
         {
             return Products;
-        }
-
-        public List<IState> NewStates()
-        {
-           return States;
         }
     }
 }

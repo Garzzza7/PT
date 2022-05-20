@@ -6,15 +6,13 @@ namespace Data
     {
         private List<IProduct> products;
         private List<IEvent> events;
-        private List<IState> states;
         private List<IClient> clients;
 
-        internal DataContext(List<IClient> _client, List<IEvent> _events, List<IProduct> _products, List<IState> _states)
+        internal DataContext(List<IClient> _client, List<IEvent> _events, List<IProduct> _products)
         {
             clients = _client;
             events = _events;
             products = _products;
-            states = _states;
         }
 
         //Client
@@ -109,23 +107,6 @@ namespace Data
         public List<IEvent> GetAllEvents()
         {
             return events;
-        }
-
-        //State
-
-        public void AddState(IState state)
-        {
-            states.Add(state);
-        }
-
-        public void DeleteState(IState state)
-        {
-            states.Remove(state);
-        }
-
-        public List<IState> GetAllStates()
-        {
-            return states;
         }
     }
 }

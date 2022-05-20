@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Data
 {
@@ -10,22 +11,16 @@ namespace Data
         public abstract IProduct GetProduct(int id);
         public abstract bool ProductExists(int id);
         public abstract List<IProduct> GetAllProducts();
-        public abstract List<int> GetAllProductIds();
 
         public abstract void AddClient(IClient client);
         public abstract void DeleteClient(IClient client);
         public abstract IClient GetClient(int id);
         public abstract bool ClientExists(int id);
         public abstract List<IClient> GetAllClients();
-        public abstract List<int> GetAllClientsIds();
 
         public abstract void AddEvent(IEvent IEvent);
         public abstract void DeleteEvent(IEvent IEvent);
         public abstract List<IEvent> GetAllEvents();
-
-        public abstract void AddState(IState state);
-        public abstract void DeleteState(IState state);
-        public abstract List<IState> GetAllStates();
 
         public static DataLayerAbstractAPI CreateLayer(IContent inc = default(Content))
         {
@@ -60,10 +55,6 @@ namespace Data
             {
                 return repository.DataContext.GetAllProducts();
             }
-            public override List<int> GetAllProductIds()
-            {
-                return repository.DataContext.GetAllProductIds();
-            }
 
             //Client
 
@@ -87,10 +78,6 @@ namespace Data
             {
                 return repository.DataContext.GetAllClients();
             }
-            public override List<int> GetAllClientsIds()
-            {
-                return repository.DataContext.GetAllClientsIds();
-            }
 
             //Event
 
@@ -105,21 +92,6 @@ namespace Data
             public override List<IEvent> GetAllEvents()
             {
                 return repository.DataContext.GetAllEvents();
-            }
-
-            //State
-
-            public override void AddState(IState state)
-            {
-                repository.DataContext.AddState(state);
-            }
-            public override void DeleteState(IState state)
-            {
-                repository.DataContext.DeleteState(state);
-            }
-            public override List<IState> GetAllStates()
-            {
-                return repository.DataContext.GetAllStates();
             }
         }
 
