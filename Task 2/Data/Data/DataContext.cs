@@ -31,7 +31,7 @@ namespace Data
 
         public IClient GetClient(int id)
         {
-            return clients[id];
+            return clients.Find(client => client.Id == id);
         }
 
         public bool ClientExists(int id)
@@ -42,6 +42,17 @@ namespace Data
         public List<IClient> GetAllClients()
         {
             return clients;
+        }
+
+        public List<int> GetAllClientsIds()
+        {
+            List<int> ids = new List<int>();
+
+            foreach (IClient client in clients)
+            {
+                ids.Add(client.Id);
+            }
+            return ids;
         }
 
         //Product
@@ -69,6 +80,18 @@ namespace Data
         public List<IProduct> GetAllProducts()
         {
             return products;
+        }
+
+        public List<int> GetAllProductIds()
+        {
+            List<int> ids = new List<int>();
+
+            foreach (IProduct product in products)
+            {
+                ids.Add(product.Id);
+            }
+
+            return ids;
         }
 
         //Event
