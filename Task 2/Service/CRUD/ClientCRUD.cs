@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Data.DataBase;
 
 namespace Service
 {
@@ -15,7 +16,7 @@ namespace Service
         static public bool AddClient(int ID , string name , string surname)
         {
             using (DataClasses1DataContext context = new DataClasses1DataContext())
-            {
+            {//lolo
                 Clients__ newCustomer = new Clients__
                 {
                     customer_id = id,
