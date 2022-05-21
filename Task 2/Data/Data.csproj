@@ -62,12 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LinqToSql.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Data\DataContext.cs" />
-    <Compile Include="Data\DataLayerAbstractAPI.cs" />
-    <Compile Include="Data\IClient.cs" />
-    <Compile Include="Data\IContent.cs" />
-    <Compile Include="Data\IEvent.cs" />
-    <Compile Include="Data\IProduct.cs" />
+    <Compile Include="DataAPI\DataLayerAbstractAPI.cs" />
+    <Compile Include="DataAPI\IClient.cs" />
+    <Compile Include="DataAPI\IContent.cs" />
+    <Compile Include="DataAPI\IEvent.cs" />
+    <Compile Include="DataAPI\IProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

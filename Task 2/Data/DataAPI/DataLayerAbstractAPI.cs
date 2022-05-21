@@ -25,8 +25,18 @@ namespace Data
         public abstract void DeleteEvent(int id);
         public abstract void UpdateEventClient(int id, int clientId);
         public abstract void UpdateEventPurchaseDate(int id, DateTime purchaseDate);
-        public abstract void GetEvent(int id);
+        public abstract IEvent GetEvent(int id);
         public abstract IEnumerable<IEvent> GetAllEvents();
+
+        public static DataLayerAbstractAPI CreateLayer()
+        {
+            return new DataLayerConcrete();
+        }
+
+        public static DataLayerAbstractAPI CreateLayer(string sqlString)
+        {
+            return new DataLayerConcrete(sqlString);
+        }
 
         private class DataLayerConcrete : DataLayerAbstractAPI
         {
@@ -80,12 +90,15 @@ namespace Data
 
             public override IClient GetClient(int id)
             {
-                return null;
+                return (IClient) context.Clients.FirstOrDefault(x => x.ClientID == id);
             }
 
             public override IEnumerable<IClient> GetAllClients()
             {
-                return null;
+                var clients = from x in context.Clients
+                              select (IClient) x;
+
+                return clients;
             }
 
             //////////////////////////////////////////
@@ -127,12 +140,15 @@ namespace Data
 
             public override IProduct GetProduct(int id)
             {
-                return null;
+                return (IProduct) context.Products.FirstOrDefault(x => x.ProductID == id);
             }
 
             public override IEnumerable<IProduct> GetAllProducts()
             {
-                return null;
+                var products = from x in context.Clients
+                               select (IProduct) x;
+
+                return products;
             }
             //////////////////////////////////////////
             public override void AddEvent(int clientId, DateTime purchaseDate)
@@ -171,16 +187,18 @@ namespace Data
                 context.SubmitChanges();
             }
 
-            public override void GetEvent(int id)
+            public override IEvent GetEvent(int id)
             {
-                
+                return (IEvent) context.Events.FirstOrDefault(x => x.EventID == id);
             }
 
             public override IEnumerable<IEvent> GetAllEvents()
             {
-                return null;
+                var events = from x in context.Events
+                             select (IEvent) x;
+
+                return events;
             }
         }
-
     }
 }

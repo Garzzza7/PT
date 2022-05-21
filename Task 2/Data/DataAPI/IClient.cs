@@ -2,7 +2,7 @@
 { 
     public interface IClient
     {
-         int Id { get; set; }
+         int ClientID { get; set; }
          string Name { get; set; }
          string Surname { get; set; }
     }
