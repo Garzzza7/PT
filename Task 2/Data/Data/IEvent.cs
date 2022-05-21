@@ -4,7 +4,7 @@ namespace Data
 {
      public interface IEvent
      {
-         IClient Client { get; set; }
+         int ClientID { get; set; }
          DateTime PurchaseDate { get; set; }
     }
 }

@@ -1,36 +1,39 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Data.DataBase;
 
 namespace Data
 {
     public abstract class DataLayerAbstractAPI
     {
-        private Repository repository;
+        private DataClasses1DataContext context;
+        //////////////////////////////////////////
         public abstract void AddProduct(IProduct product);
         public abstract void DeleteProduct(IProduct product);
         public abstract IProduct GetProduct(int id);
-        public abstract bool ProductExists(int id);
         public abstract List<IProduct> GetAllProducts();
-
+        //////////////////////////////////////////
         public abstract void AddClient(IClient client);
         public abstract void DeleteClient(IClient client);
         public abstract IClient GetClient(int id);
         public abstract bool ClientExists(int id);
         public abstract List<IClient> GetAllClients();
-
+        //////////////////////////////////////////
         public abstract void AddEvent(IEvent IEvent);
         public abstract void DeleteEvent(IEvent IEvent);
         public abstract List<IEvent> GetAllEvents();
 
+        /*
         public static DataLayerAbstractAPI CreateLayer(IContent inc = default(Content))
         {
             return new DataLayerConcrete(inc == null ? new Content() : inc);
         }
+        */
         private class DataLayerConcrete : DataLayerAbstractAPI
         {
-            public DataLayerConcrete(IContent nc)
+            public DataLayerConcrete()
             {
-                repository = new Repository(nc);
+                context = new DataClasses1DataContext();
             }
 
             //Product
