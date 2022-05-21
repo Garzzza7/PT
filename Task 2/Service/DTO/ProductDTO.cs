@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Service.DTO
 {
-    internal class ProductDTO
+    public class ProductDTO
     {
-        int ProductID { get; set; }
-        double Price { get; set; }
-        string Category { get; set; }
+        public int ProductID { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
     }
 }

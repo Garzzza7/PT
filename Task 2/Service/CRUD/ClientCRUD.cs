@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service
+namespace Service.CRUD
 {
-    internal class ClientCRUD
+    public class ClientCRUD
     {
         private DataLayerAbstractAPI dataLayer;
 
-        internal ClientCRUD()
+        public ClientCRUD()
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
         }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using Data;
 using Service.DTO;
 
-namespace Service
+namespace Service.CRUD
 {
-    internal class EventCRUD
+    public class EventCRUD
     {
         private DataLayerAbstractAPI dataLayer;
 
-        internal EventCRUD()
+        public EventCRUD()
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
         }
