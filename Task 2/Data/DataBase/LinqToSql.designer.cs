@@ -30,16 +30,19 @@ namespace Data.DataBase
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertEvent(Event instance);
-    partial void UpdateEvent(Event instance);
-    partial void DeleteEvent(Event instance);
+    partial void InsertClient(Client instance);
+    partial void UpdateClient(Client instance);
+    partial void DeleteClient(Client instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertEvent(Event instance);
+    partial void UpdateEvent(Event instance);
+    partial void DeleteEvent(Event instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::Data.Properties.Settings.Default.DBConnectionString1, mappingSource)
+				base(global::Data.Properties.Settings.Default.DBConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -68,19 +71,11 @@ namespace Data.DataBase
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Clients__> Clients__s
+		public System.Data.Linq.Table<Client> Clients
 		{
 			get
 			{
-				return this.GetTable<Clients__>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Event> Events
-		{
-			get
-			{
-				return this.GetTable<Event>();
+				return this.GetTable<Client>();
 			}
 		}
 		
@@ -91,20 +86,43 @@ namespace Data.DataBase
 				return this.GetTable<Product>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Event> Events
+		{
+			get
+			{
+				return this.GetTable<Event>();
+			}
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Clients\r\n]")]
-	public partial class Clients__
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Client\r\n]")]
+	public partial class Client : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _ClientName;
 		
-		private string _ClientSurame;
+		private string _ClientSurname;
 		
-		private string _ClientID;
+		private int _ClientID;
 		
-		public Clients__()
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnClientNameChanging(string value);
+    partial void OnClientNameChanged();
+    partial void OnClientSurnameChanging(string value);
+    partial void OnClientSurnameChanged();
+    partial void OnClientIDChanging(int value);
+    partial void OnClientIDChanged();
+    #endregion
+		
+		public Client()
 		{
+			OnCreated();
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
@@ -118,29 +136,37 @@ namespace Data.DataBase
 			{
 				if ((this._ClientName != value))
 				{
+					this.OnClientNameChanging(value);
+					this.SendPropertyChanging();
 					this._ClientName = value;
+					this.SendPropertyChanged("ClientName");
+					this.OnClientNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientSurame", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ClientSurame
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientSurname", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ClientSurname
 		{
 			get
 			{
-				return this._ClientSurame;
+				return this._ClientSurname;
 			}
 			set
 			{
-				if ((this._ClientSurame != value))
+				if ((this._ClientSurname != value))
 				{
-					this._ClientSurame = value;
+					this.OnClientSurnameChanging(value);
+					this.SendPropertyChanging();
+					this._ClientSurname = value;
+					this.SendPropertyChanged("ClientSurname");
+					this.OnClientSurnameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ClientID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ClientID
 		{
 			get
 			{
@@ -150,97 +176,11 @@ namespace Data.DataBase
 			{
 				if ((this._ClientID != value))
 				{
+					this.OnClientIDChanging(value);
+					this.SendPropertyChanging();
 					this._ClientID = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Events")]
-	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Client;
-		
-		private System.Nullable<System.DateTime> _Date;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnClientChanging(string value);
-    partial void OnClientChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    #endregion
-		
-		public Event()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Client", DbType="NVarChar(50)")]
-		public string Client
-		{
-			get
-			{
-				return this._Client;
-			}
-			set
-			{
-				if ((this._Client != value))
-				{
-					this.OnClientChanging(value);
-					this.SendPropertyChanging();
-					this._Client = value;
-					this.SendPropertyChanged("Client");
-					this.OnClientChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
-		public System.Nullable<System.DateTime> Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
+					this.SendPropertyChanged("ClientID");
+					this.OnClientIDChanged();
 				}
 			}
 		}
@@ -266,7 +206,7 @@ namespace Data.DataBase
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Product")]
 	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -274,7 +214,7 @@ namespace Data.DataBase
 		
 		private int _ProductID;
 		
-		private string _ProductPrice;
+		private System.Nullable<decimal> _ProductPrice;
 		
 		private string _ProductCategory;
 		
@@ -284,7 +224,7 @@ namespace Data.DataBase
     partial void OnCreated();
     partial void OnProductIDChanging(int value);
     partial void OnProductIDChanged();
-    partial void OnProductPriceChanging(string value);
+    partial void OnProductPriceChanging(System.Nullable<decimal> value);
     partial void OnProductPriceChanged();
     partial void OnProductCategoryChanging(string value);
     partial void OnProductCategoryChanged();
@@ -315,8 +255,8 @@ namespace Data.DataBase
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductPrice", DbType="NVarChar(50)")]
-		public string ProductPrice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductPrice", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ProductPrice
 		{
 			get
 			{
@@ -351,6 +291,116 @@ namespace Data.DataBase
 					this._ProductCategory = value;
 					this.SendPropertyChanged("ProductCategory");
 					this.OnProductCategoryChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Event")]
+	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _EventID;
+		
+		private int _ClientID;
+		
+		private System.DateTime _Date;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnEventIDChanging(int value);
+    partial void OnEventIDChanged();
+    partial void OnClientIDChanging(int value);
+    partial void OnClientIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    #endregion
+		
+		public Event()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EventID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int EventID
+		{
+			get
+			{
+				return this._EventID;
+			}
+			set
+			{
+				if ((this._EventID != value))
+				{
+					this.OnEventIDChanging(value);
+					this.SendPropertyChanging();
+					this._EventID = value;
+					this.SendPropertyChanged("EventID");
+					this.OnEventIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientID", DbType="Int NOT NULL")]
+		public int ClientID
+		{
+			get
+			{
+				return this._ClientID;
+			}
+			set
+			{
+				if ((this._ClientID != value))
+				{
+					this.OnClientIDChanging(value);
+					this.SendPropertyChanging();
+					this._ClientID = value;
+					this.SendPropertyChanged("ClientID");
+					this.OnClientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
 				}
 			}
 		}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.DataBase;
 
@@ -6,95 +7,178 @@ namespace Data
 {
     public abstract class DataLayerAbstractAPI
     {
-        private DataClasses1DataContext context;
-        //////////////////////////////////////////
-        public abstract void AddProduct(IProduct product);
-        public abstract void DeleteProduct(IProduct product);
-        public abstract IProduct GetProduct(int id);
-        public abstract List<IProduct> GetAllProducts();
-        //////////////////////////////////////////
-        public abstract void AddClient(IClient client);
-        public abstract void DeleteClient(IClient client);
+        public abstract void AddClient(string name, string surname);
+        public abstract void DeleteClient(int id);
+        public abstract void UpdateClientName(int id, string name);
+        public abstract void UpdateClientSurname(int id, string surname);
         public abstract IClient GetClient(int id);
-        public abstract bool ClientExists(int id);
-        public abstract List<IClient> GetAllClients();
+        public abstract IEnumerable<IClient> GetAllClients();
         //////////////////////////////////////////
-        public abstract void AddEvent(IEvent IEvent);
-        public abstract void DeleteEvent(IEvent IEvent);
-        public abstract List<IEvent> GetAllEvents();
+        public abstract void AddProduct(decimal price, string category);
+        public abstract void DeleteProduct(int id);
+        public abstract void UpdateProductPrice(int id, decimal price);
+        public abstract void UpdateProductCategory(int id, string category);
+        public abstract IProduct GetProduct(int id);
+        public abstract IEnumerable<IProduct> GetAllProducts();
+        //////////////////////////////////////////
+        public abstract void AddEvent(int clientId, DateTime purchaseDate);
+        public abstract void DeleteEvent(int id);
+        public abstract void UpdateEventClient(int id, int clientId);
+        public abstract void UpdateEventPurchaseDate(int id, DateTime purchaseDate);
+        public abstract void GetEvent(int id);
+        public abstract IEnumerable<IEvent> GetAllEvents();
 
-        /*
-        public static DataLayerAbstractAPI CreateLayer(IContent inc = default(Content))
-        {
-            return new DataLayerConcrete(inc == null ? new Content() : inc);
-        }
-        */
         private class DataLayerConcrete : DataLayerAbstractAPI
         {
+            private DataClasses1DataContext context;
             public DataLayerConcrete()
             {
                 context = new DataClasses1DataContext();
             }
 
-            //Product
-
-            public override void AddProduct(IProduct product)
+            public DataLayerConcrete(string sqlString)
             {
-                repository.DataContext.AddProduct(product);
-            }
-            public override void DeleteProduct(IProduct product)
-            {
-                repository.DataContext.DeleteProduct(product);
-            }
-            public override IProduct GetProduct(int id)
-            {
-                return repository.DataContext.GetProduct(id);
-            }
-            public override bool ProductExists(int id)
-            {
-                return repository.DataContext.ProductExists(id);
-            }
-            public  override List<IProduct> GetAllProducts()
-            {
-                return repository.DataContext.GetAllProducts();
+                context = new DataClasses1DataContext(sqlString);
             }
 
-            //Client
+            public override void AddClient(string name, string surname)
+            {
+                var client = new Client 
+                { 
+                    ClientID = context.Clients.Count() + 1, 
+                    ClientName = name, 
+                    ClientSurname = surname 
+                };
 
-            public override void AddClient(IClient client)
-            {
-                repository.DataContext.AddClient(client);
+                context.Clients.InsertOnSubmit(client);
+                context.SubmitChanges();
             }
-            public override void DeleteClient(IClient client)
+
+            public override void DeleteClient(int id)
             {
-                repository.DataContext.DeleteClient(client);
+                Client client = context.Clients.FirstOrDefault(x => x.ClientID == id);
+
+                context.Clients.DeleteOnSubmit(client);
+                context.SubmitChanges();
             }
+
+            public override void UpdateClientName(int id, string name)
+            {
+                Client client = context.Clients.FirstOrDefault(x => x.ClientID == id);
+                client.ClientName = name;
+
+                context.SubmitChanges();
+            }
+
+            public override void UpdateClientSurname(int id, string surname)
+            {
+                Client client = context.Clients.FirstOrDefault(x => x.ClientID == id);
+                client.ClientName = surname;
+
+                context.SubmitChanges();
+            }
+
             public override IClient GetClient(int id)
             {
-                return repository.DataContext.GetClient(id);
-            }
-            public override bool ClientExists(int id)
-            {
-                return repository.DataContext.ClientExists(id);
-            }
-            public override List<IClient> GetAllClients()
-            {
-                return repository.DataContext.GetAllClients();
+                return null;
             }
 
-            //Event
+            public override IEnumerable<IClient> GetAllClients()
+            {
+                return null;
+            }
 
-            public override void AddEvent(IEvent IEvent)
+            //////////////////////////////////////////
+            public override void AddProduct(decimal price, string category)
             {
-                repository.DataContext.AddEvent(IEvent);
+                var product = new Product
+                {
+                    ProductID = context.Clients.Count() + 1,
+                    ProductPrice = price,
+                    ProductCategory = category
+                };
+                context.Products.InsertOnSubmit(product);
+                context.SubmitChanges();
             }
-            public override void DeleteEvent(IEvent IEvent)
+
+            public override void DeleteProduct(int id)
             {
-                repository.DataContext.DeleteEvent(IEvent);
+                Product product = context.Products.FirstOrDefault(x => x.ProductID == id);
+
+                context.Products.DeleteOnSubmit(product);
+                context.SubmitChanges();
             }
-            public override List<IEvent> GetAllEvents()
+
+            public override void UpdateProductPrice(int id, decimal price)
             {
-                return repository.DataContext.GetAllEvents();
+                Product product = context.Products.FirstOrDefault(x => x.ProductID == id);
+                product.ProductPrice = price;
+
+                context.SubmitChanges();
+            }
+
+            public override void UpdateProductCategory(int id, string category)
+            {
+                Product product = context.Products.FirstOrDefault(x => x.ProductID == id);
+                product.ProductCategory = category;
+
+                context.SubmitChanges();
+            }
+
+            public override IProduct GetProduct(int id)
+            {
+                return null;
+            }
+
+            public override IEnumerable<IProduct> GetAllProducts()
+            {
+                return null;
+            }
+            //////////////////////////////////////////
+            public override void AddEvent(int clientId, DateTime purchaseDate)
+            {
+                Event newEvent = new Event
+                {
+                    EventID = context.Clients.Count() + 1,
+                    ClientID = clientId,
+                    Date = purchaseDate
+                };
+                context.Events.InsertOnSubmit(newEvent);
+                context.SubmitChanges();
+            }
+
+            public override void DeleteEvent(int id)
+            {
+                Event thisEvent = context.Events.FirstOrDefault(x => x.EventID == id);
+
+                context.Events.DeleteOnSubmit(thisEvent);
+                context.SubmitChanges();
+            }
+
+            public override void UpdateEventClient(int id, int clientId)
+            {
+                Event thisEvent = context.Events.FirstOrDefault(x => x.EventID == id);
+                thisEvent.ClientID = clientId;
+
+                context.SubmitChanges();
+            }
+
+            public override void UpdateEventPurchaseDate(int id, DateTime purchaseDate)
+            {
+                Event thisEvent = context.Events.FirstOrDefault(x => x.EventID == id);
+                thisEvent.Date = purchaseDate;
+
+                context.SubmitChanges();
+            }
+
+            public override void GetEvent(int id)
+            {
+                
+            }
+
+            public override IEnumerable<IEvent> GetAllEvents()
+            {
+                return null;
             }
         }
 

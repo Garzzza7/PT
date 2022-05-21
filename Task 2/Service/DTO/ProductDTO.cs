@@ -8,5 +8,8 @@ namespace Service.DTO
 {
     internal class ProductDTO
     {
+        int Id { get; set; }
+        double Price { get; set; }
+        string Category { get; set; }
     }
 }

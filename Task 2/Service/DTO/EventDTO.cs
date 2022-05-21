@@ -8,5 +8,7 @@ namespace Service.DTO
 {
     internal class EventDTO
     {
+        int ClientID { get; set; }
+        DateTime PurchaseDate { get; set; }
     }
 }

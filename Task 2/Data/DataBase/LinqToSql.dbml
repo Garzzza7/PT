@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DB.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="DBConnectionString1" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.[Clients&#xD;&#xA;]" Member="Clients__s">
-    <Type Name="Clients__">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataBase\DB.mdf;Integrated Security=True" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[Client&#xD;&#xA;]" Member="Clients">
+    <Type Name="Client">
       <Column Name="ClientName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ClientSurame" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ClientID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientSurname" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Events" Member="Events">
-    <Type Name="Event">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Client" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Products" Member="Products">
+  <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ProductPrice" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="ProductCategory" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Event" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ClientID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

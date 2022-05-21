@@ -8,5 +8,8 @@ namespace Service.DTO
 {
     internal class ClientDTO
     {
+        int Id { get; set; }
+        string Name { get; set; }
+        string Surname { get; set; }
     }
 }
