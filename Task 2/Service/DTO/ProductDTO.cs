@@ -9,7 +9,7 @@ namespace Service.DTO
     public class ProductDTO
     {
         public int ProductID { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Category { get; set; }
     }
 }

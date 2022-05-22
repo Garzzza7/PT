@@ -28,7 +28,7 @@ namespace Presentation.ViewModels
         public ClientItemViewModel()
         {
             service = new ClientCRUD();
-            updateCommand = new RelayCommand(e => { UpdateCatalog(); }, c => CanUpdate);
+            updateCommand = new RelayCommand(e => { UpdateClient(); }, c => CanUpdate);
         }
 
         public int ClientID
@@ -75,7 +75,7 @@ namespace Presentation.ViewModels
             string.IsNullOrWhiteSpace(surname)
         );
 
-        private void UpdateCatalog()
+        private void UpdateClient()
         {
             service.UpdateClientName(clientID, name);
             service.UpdateClientSurname(clientID, surname);

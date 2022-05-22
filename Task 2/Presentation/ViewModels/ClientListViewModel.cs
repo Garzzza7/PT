@@ -128,7 +128,7 @@ namespace Presentation.ViewModels
 
         private Visibility isClientViewModelSelectedVisibility;
 
-        public Visibility IsCatalogViewModelSelectedVisibility
+        public Visibility IsClientViewModelSelectedVisibility
         {
             get => isClientViewModelSelectedVisibility;
             set
