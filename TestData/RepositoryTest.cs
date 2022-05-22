@@ -32,7 +32,7 @@ namespace TestData
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
 
-            Assert.AreEqual(2, dataLayer.GetAllClients().Count());
+            Assert.AreEqual(3, dataLayer.GetAllClients().Count());
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace TestData
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
 
-            Assert.AreEqual(3, dataLayer.GetAllEvents().Count());
+            Assert.AreEqual(3, dataLayer.GetAllProducts().Count());
         }
     }
 }

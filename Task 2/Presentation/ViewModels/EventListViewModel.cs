@@ -95,6 +95,17 @@ namespace Presentation.ViewModels
             }
         }
 
+        public int ProductID
+        {
+            get => productID;
+            set
+            {
+                productID = value;
+
+                OnPropertyChanged(nameof(productID));
+            }
+        }
+
         public DateTime PurchaseDate
         {
             get => purchaseDate;

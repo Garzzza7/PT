@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         private ViewModelBase _viewModel;
         private ICommand _command;
@@ -31,7 +31,7 @@ namespace Presentation.ViewModels
             public ICommand command
             {
 
-                get=> _command;
+                get => _command;
 
             } 
         public void SwitchView(string view)

@@ -4,20 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation.Views"
-        xmlns:ViewModels="clr-namespace:Presentation.ViewModels"
+        xmlns:vm="clr-namespace:Presentation.ViewModels"
         mc:Ignorable="d"
-        Title="PT TASK 2" Height="900" Width="1600">
-    <Window.DataContext>
-        <ViewModels:ClientItemViewModel/>
-    </Window.DataContext>
-
-
+        Title="MainWindow" Height="900" Width="1600">
+    
+        <Window.DataContext>
+            <vm:ClientListViewModel/>
+        </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-
         </Grid.RowDefinitions>
+        
+        <ContentControl Content="{Binding ViewModel}"/>
 
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="10" Width="200" Content="Clients" Command="{Binding command}" CommandParameter="ClientListView" Height="24"/>
+            <Button Margin="10" Width="200" Content="Products" Command="{Binding command}" CommandParameter="ProductListView"/>
+            <Button Margin="10,10,10,9.556" Width="200" Content="Events" Command="{Binding command}" CommandParameter="EventListView"/>
+        </StackPanel>
     </Grid>
+    
 </Window>

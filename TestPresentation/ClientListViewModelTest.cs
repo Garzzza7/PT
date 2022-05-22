@@ -28,7 +28,7 @@ namespace TestPresentation
         [TestMethod]
         public void InitialModelTest()
         {
-            ClientListViewModel clientListViewModel = SetViewModel();
+            var clientListViewModel = SetViewModel();
 
             Assert.IsNull(clientListViewModel.SelectedVM);
             Assert.IsNotNull(clientListViewModel.AddCommand);
@@ -38,7 +38,7 @@ namespace TestPresentation
         [TestMethod]
         public void CountModelTest()
         {
-            ClientListViewModel clientListViewModel = SetViewModel();
+            var clientListViewModel = SetViewModel();
 
             Assert.IsNotNull(clientListViewModel.ClientViewModels);
             Assert.AreEqual(clientListViewModel.ClientViewModels.Count, 2);
@@ -47,10 +47,10 @@ namespace TestPresentation
         [TestMethod]
         public void DeleteTest()
         {
-            ClientListViewModel clientListViewModel = SetViewModel();
+            var clientListViewModel = SetViewModel();
             clientListViewModel.SelectedVM = null;
 
-            ICommand deleteCommand = clientListViewModel.DeleteCommand;
+            var deleteCommand = clientListViewModel.DeleteCommand;
 
             bool can = clientListViewModel.IsClientViewModelSelected;
 
