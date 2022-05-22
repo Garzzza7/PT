@@ -326,6 +326,8 @@ namespace Data.DataBase
 		
 		private int _ClientID;
 		
+		private int _ProductID;
+		
 		private System.DateTime _Date;
 		
     #region Extensibility Method Definitions
@@ -336,6 +338,8 @@ namespace Data.DataBase
     partial void OnEventIDChanged();
     partial void OnClientIDChanging(int value);
     partial void OnClientIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
     partial void OnDateChanging(System.DateTime value);
     partial void OnDateChanged();
     #endregion
@@ -381,6 +385,26 @@ namespace Data.DataBase
 					this._ClientID = value;
 					this.SendPropertyChanged("ClientID");
 					this.OnClientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
 				}
 			}
 		}

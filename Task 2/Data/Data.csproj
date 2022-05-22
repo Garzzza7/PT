@@ -64,7 +64,7 @@
     </Compile>
     <Compile Include="DataAPI\DataLayerAbstractAPI.cs" />
     <Compile Include="DataAPI\IClient.cs" />
-    <Compile Include="DataAPI\IContent.cs" />
+    <Compile Include="DataAPI\Content.cs" />
     <Compile Include="DataAPI\IEvent.cs" />
     <Compile Include="DataAPI\IProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

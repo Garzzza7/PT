@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class ClientListViewModel : ViewModelBase
+    public class ClientListViewModel : ViewModelBase
     {
         private int clientID;
         private string name;

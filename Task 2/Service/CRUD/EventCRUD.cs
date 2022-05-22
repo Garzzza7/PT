@@ -22,9 +22,9 @@ namespace Service.CRUD
             this.dataLayer = dataLayer;
         }
 
-        public void AddEvent(int clientId, DateTime purchaseDate)
+        public void AddEvent(int clientId, int productId, DateTime purchaseDate)
         {
-            dataLayer.AddEvent(clientId, purchaseDate);
+            dataLayer.AddEvent(clientId, productId, purchaseDate);
         }
 
         public void DeleteEvent(int id)
@@ -35,6 +35,11 @@ namespace Service.CRUD
         public void UpdateEventClient(int id, int clientId)
         {
             dataLayer.UpdateEventClient(id, clientId);
+        }
+
+        public void UpdateEventProduct(int id, int productId)
+        {
+            dataLayer.UpdateEventProduct(id, productId);
         }
 
         public void UpdateEventPurchaseDate(int id, DateTime purchaseDate)

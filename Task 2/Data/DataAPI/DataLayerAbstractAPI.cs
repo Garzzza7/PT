@@ -21,9 +21,10 @@ namespace Data
         public abstract IProduct GetProduct(int id);
         public abstract IEnumerable<IProduct> GetAllProducts();
         //////////////////////////////////////////
-        public abstract void AddEvent(int clientId, DateTime purchaseDate);
+        public abstract void AddEvent(int clientId, int productId, DateTime purchaseDate);
         public abstract void DeleteEvent(int id);
         public abstract void UpdateEventClient(int id, int clientId);
+        public abstract void UpdateEventProduct(int id, int productId);
         public abstract void UpdateEventPurchaseDate(int id, DateTime purchaseDate);
         public abstract IEvent GetEvent(int id);
         public abstract IEnumerable<IEvent> GetAllEvents();
@@ -151,12 +152,13 @@ namespace Data
                 return products;
             }
             //////////////////////////////////////////
-            public override void AddEvent(int clientId, DateTime purchaseDate)
+            public override void AddEvent(int clientId, int productId, DateTime purchaseDate)
             {
                 Event newEvent = new Event
                 {
                     EventID = context.Clients.Count() + 1,
                     ClientID = clientId,
+                    ProductID = productId,
                     Date = purchaseDate
                 };
                 context.Events.InsertOnSubmit(newEvent);
@@ -175,6 +177,14 @@ namespace Data
             {
                 Event thisEvent = context.Events.FirstOrDefault(x => x.EventID == id);
                 thisEvent.ClientID = clientId;
+
+                context.SubmitChanges();
+            }
+
+            public override void UpdateEventProduct(int id, int productId)
+            {
+                Event thisEvent = context.Events.FirstOrDefault(x => x.EventID == id);
+                thisEvent.ProductID = productId;
 
                 context.SubmitChanges();
             }

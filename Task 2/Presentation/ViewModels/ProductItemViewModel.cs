@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class ProductItemViewModel : ViewModelBase
+    public class ProductItemViewModel : ViewModelBase
     {
         private int productID;
         private decimal price;
@@ -28,7 +28,7 @@ namespace Presentation.ViewModels
         public ProductItemViewModel()
         {
             service = new ProductCRUD();
-            updateCommand = new RelayCommand(e => { UpdateCatalog(); }, c => CanUpdate);
+            updateCommand = new RelayCommand(e => { UpdateProduct(); }, c => CanUpdate);
         }
 
         public int ProductID
@@ -72,10 +72,10 @@ namespace Presentation.ViewModels
         public bool CanUpdate => !(
             string.IsNullOrWhiteSpace(productID.ToString()) ||
             string.IsNullOrWhiteSpace(price.ToString()) ||
-            string.IsNullOrWhiteSpace(category.ToString())
+            string.IsNullOrWhiteSpace(category)
         );
 
-        private void UpdateCatalog()
+        private void UpdateProduct()
         {
             service.UpdateProductPrice(productID, price);
             service.UpdateProductCategory(productID, category);

@@ -9,16 +9,17 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class EventItemViewModel : ViewModelBase
+    public class EventItemViewModel : ViewModelBase
     {
         private int eventID;
         private int clientID;
+        private int productID;
         private DateTime purchaseDate;
 
         private EventCRUD service;
         private ICommand updateCommand;
 
-        public EventItemViewModel(int eventID, int clientID, DateTime purchaseDate)
+        public EventItemViewModel(int eventID, int clientID, int productID, DateTime purchaseDate)
         {
             this.eventID = eventID;
             this.clientID = clientID;
@@ -28,7 +29,7 @@ namespace Presentation.ViewModels
         public EventItemViewModel()
         {
             service = new EventCRUD();
-            updateCommand = new RelayCommand(e => { UpdateCatalog(); }, c => CanUpdate);
+            updateCommand = new RelayCommand(e => { UpdateEvent(); }, c => CanUpdate);
         }
 
         public int EventID
@@ -53,6 +54,17 @@ namespace Presentation.ViewModels
             }
         }
 
+        public int ProductID
+        {
+            get => productID;
+            set
+            {
+                productID = value;
+
+                OnPropertyChanged(nameof(productID));
+            }
+        }
+
         public DateTime PurchaseDate
         {
             get => purchaseDate;
@@ -72,12 +84,14 @@ namespace Presentation.ViewModels
         public bool CanUpdate => !(
             string.IsNullOrWhiteSpace(eventID.ToString()) ||
             string.IsNullOrWhiteSpace(clientID.ToString()) ||
+            string.IsNullOrWhiteSpace(productID.ToString()) ||
             string.IsNullOrWhiteSpace(purchaseDate.ToString())
         );
 
-        private void UpdateCatalog()
+        private void UpdateEvent()
         {
             service.UpdateEventClient(eventID, clientID);
+            service.UpdateEventProduct(eventID, productID);
             service.UpdateEventPurchaseDate(eventID, purchaseDate);
         }
     }

@@ -11,10 +11,11 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class EventListViewModel : ViewModelBase
+    public class EventListViewModel : ViewModelBase
     {
         private int eventID;
         private int clientID;
+        private int productID;
         private DateTime purchaseDate;
 
         private ICommand addCommand;
@@ -43,7 +44,7 @@ namespace Presentation.ViewModels
 
         private void AddEvent()
         {
-            service.AddEvent(clientID, purchaseDate);
+            service.AddEvent(clientID, productID, purchaseDate);
             GetEvents();
         }
 
@@ -61,7 +62,7 @@ namespace Presentation.ViewModels
 
             foreach (var e in service.GetAllEvents())
             {
-                eventViewModels.Add(new EventItemViewModel(e.EventID, e.ClientID, e.PurchaseDate));
+                eventViewModels.Add(new EventItemViewModel(e.EventID, e.ClientID, e.ProductID, e.PurchaseDate));
             }
 
             OnPropertyChanged(nameof(eventViewModels));

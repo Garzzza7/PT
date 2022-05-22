@@ -9,7 +9,7 @@ using Service.CRUD;
 
 namespace Presentation.ViewModels
 {
-    internal class ClientItemViewModel : ViewModelBase
+    public class ClientItemViewModel : ViewModelBase
     {
         private int clientID;
         private string name;

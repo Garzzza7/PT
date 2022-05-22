@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Presentation.ViewModels
 {
-    internal class ProductListViewModel : ViewModelBase
+    public class ProductListViewModel : ViewModelBase
     {
         private int productID;
         private decimal price;

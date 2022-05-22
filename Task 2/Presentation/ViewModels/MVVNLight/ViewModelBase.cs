@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace Presentation.ViewModels.MVVNLight
 {
-    internal class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

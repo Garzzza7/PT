@@ -6,6 +6,7 @@ namespace Data
      {
          int EventID { get; set; }
          int ClientID { get; set; }
+         int ProductID { get; set; }
          DateTime PurchaseDate { get; set; }
     }
 }
