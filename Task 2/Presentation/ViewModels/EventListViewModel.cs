@@ -164,6 +164,7 @@ namespace Presentation.ViewModels
         public bool CanAdd => !(
             string.IsNullOrWhiteSpace(eventID.ToString()) ||
             string.IsNullOrWhiteSpace(clientID.ToString()) ||
+            string.IsNullOrWhiteSpace(productID.ToString()) ||
             string.IsNullOrWhiteSpace(purchaseDate.ToString())
         );
     }

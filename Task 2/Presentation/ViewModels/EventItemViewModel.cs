@@ -23,6 +23,7 @@ namespace Presentation.ViewModels
         {
             this.eventID = eventID;
             this.clientID = clientID;
+            this.productID = productID;
             this.purchaseDate = purchaseDate;
         }
 
