@@ -61,7 +61,7 @@
         <Label HorizontalAlignment="Center" Grid.Row="2" Content="{Binding Name}" FontSize="20" Margin="473,0,267,80" Width="240" BorderThickness="2" BorderBrush="Pink"/>
         <Label HorizontalAlignment="Center" Grid.Row="2" Content="{Binding Surname}" FontSize="20" Margin="431,40,252,40" Width="240"/>
 
-        <Label Grid.Row ="3" Content="Change something if u want" FontSize="20px" FontWeight="Medium" HorizontalAlignment="Center"/>
+        <Label Grid.Row ="3" Content="Edit" FontSize="20px" FontWeight="Medium" HorizontalAlignment="Center"/>
 
         <Label HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Content="Name:" FontSize="20" Margin="141,20,593,140" Foreground="Blue"/>
         <TextBox Grid.Row="4" Width="200" Margin="359,20,241,140" HorizontalAlignment="Center"

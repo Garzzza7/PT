@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Presentation.Views"
       xmlns:ViewModels="clr-namespace:Presentation.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="800" d:DesignWidth="1600">
 
     <UserControl.DataContext>
         <ViewModels:ClientListViewModel/>
@@ -33,7 +33,7 @@
                                 <ItemsControl ItemsSource="{TemplateBinding Validation.Errors}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Foreground="Red"
+                                            <TextBlock Foreground="White"
                                                        Text="{Binding ErrorContent}">
                                             </TextBlock>
                                         </DataTemplate>
@@ -46,14 +46,21 @@
             </Style>
         </Grid.Resources>
 
-        <Label Margin="19,10,1437,720" Content="First Name:"/>
-        <TextBox Margin="110,10,0,705" HorizontalAlignment="Left" Width="176"
+        <Label Margin="19,10,1437,720" Content="ClientID:"/>
+        <TextBox Margin="110,10,0,705" HorizontalAlignment="Left" Width="90"
+                 Text=
+                 "{Binding ClientID, 
+            ValidatesOnDataErrors=True,
+            UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Margin="19,10,1437,720" Content="Name:"/>
+        <TextBox Margin="110,10,0,705" HorizontalAlignment="Left" Width="90"
                  Text=
                  "{Binding Name, 
             ValidatesOnDataErrors=True,
             UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Margin="0,45,1455,688" Content="Last Name:" HorizontalAlignment="Right" Width="91"/>
+        <Label Margin="0,45,1455,688" Content="Surname:" Width="90"/>
         <TextBox Margin="110,55,0,664" HorizontalAlignment="Left"  Width="198"
                  Text="{Binding Surname,
             ValidatesOnDataErrors=True, 
@@ -75,6 +82,7 @@
 
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="ClientID" Width="140" DisplayMemberBinding="{Binding ClientID}" />
                     <GridViewColumn Header="Name" Width="240" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Surname" Width="240" DisplayMemberBinding="{Binding Surname}" />
                 </GridView>
@@ -85,11 +93,11 @@
                 Command="{Binding DeleteCommand}" 
                 RenderTransformOrigin="0.5,0.5" Margin="337,45,1108,671"
                 Content="Remove User"
-                Background="IndianRed">
+                Background="Blue">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
-                    <SkewTransform AngleY="14.075"/>
+                    <SkewTransform AngleY="0"/>
                     <RotateTransform/>
                     <TranslateTransform Y="14.416"/>
                 </TransformGroup>

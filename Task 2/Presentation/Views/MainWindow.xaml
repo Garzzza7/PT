@@ -7,16 +7,16 @@
         xmlns:vm="clr-namespace:Presentation.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
-    
-        <Window.DataContext>
-            <vm:ClientListViewModel/>
-        </Window.DataContext>
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <ContentControl Content="{Binding ViewModel}"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -25,5 +25,5 @@
             <Button Margin="10,10,10,9.556" Width="200" Content="Events" Command="{Binding command}" CommandParameter="EventListView"/>
         </StackPanel>
     </Grid>
-    
+
 </Window>

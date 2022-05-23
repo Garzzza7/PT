@@ -7,7 +7,7 @@
       xmlns:ViewModels="clr-namespace:Presentation.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.DataContext>
         <ViewModels:EventListViewModel/>
     </UserControl.DataContext>
@@ -57,30 +57,30 @@
 
 
         <Button
-                Command="{Binding AddCommand}" RenderTransformOrigin="0.5,0.5" Margin="416,32,0,0" HorizontalAlignment="Left" Width="153" Height="48" VerticalAlignment="Top">
+                Command="{Binding AddCommand}" RenderTransformOrigin="0.5,0.5" Margin="456,32,0,0" HorizontalAlignment="Left" Width="103" Height="48" VerticalAlignment="Top">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
-                    <SkewTransform AngleY="-8.078"/>
+                    <SkewTransform AngleY="0"/>
                     <RotateTransform/>
                     <TranslateTransform Y="-10.858"/>
                 </TransformGroup>
             </Button.RenderTransform>
-            Buy
+            Add
         </Button>
 
         <Button
                 Command="{Binding DeleteCommand}" 
-                RenderTransformOrigin="0.5,0.5" Margin="457,83,0,0" HorizontalAlignment="Left" Width="97" Height="57" VerticalAlignment="Top">
+                RenderTransformOrigin="0,0" Margin="457,83,0,0" HorizontalAlignment="Left" Width="97" Height="57" VerticalAlignment="Top">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="5.419"/>
+                    <RotateTransform Angle="0"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Button.RenderTransform>
-            Restock
+            Delete
         </Button>
 
         <ListView 
