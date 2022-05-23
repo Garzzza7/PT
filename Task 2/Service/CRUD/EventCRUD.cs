@@ -22,6 +22,22 @@ namespace Service.CRUD
             this.dataLayer = dataLayer;
         }
 
+        private EventDTO Map(IEvent e)
+        {
+            if (e == null)
+            {
+                return null;
+            }
+
+            return new EventDTO
+            {
+                EventID = e.EventID,
+                ClientID = e.ClientID,
+                ProductID = e.ProductID,
+                PurchaseDate = e.PurchaseDate
+            };
+        }
+
         public void AddEvent(int clientId, int productId, DateTime purchaseDate)
         {
             dataLayer.AddEvent(clientId, productId, purchaseDate);
@@ -49,7 +65,7 @@ namespace Service.CRUD
 
         public EventDTO GetEvent(int id)
         {
-            return (EventDTO) dataLayer.GetEvent(id);
+            return Map(dataLayer.GetEvent(id));
         }
 
         public IEnumerable<EventDTO> GetAllEvents()
@@ -59,7 +75,7 @@ namespace Service.CRUD
 
             foreach (var client in clients)
             {
-                result.Add((EventDTO) client);
+                result.Add(Map(client));
             }
 
             return result;

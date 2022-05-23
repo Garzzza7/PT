@@ -49,11 +49,27 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ClientTest.cs" />
+    <Compile Include="EventTest.cs" />
+    <Compile Include="ProductTest.cs" />
+    <Compile Include="ServiceClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDataLayerAPI.cs" />
+    <Compile Include="ServiceEventTest.cs" />
+    <Compile Include="ServiceProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Task 2\Data\Data.csproj">
+      <Project>{5b03c73c-87f2-48e4-92a1-17a0bb42d1db}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Task 2\Service\Service.csproj">
+      <Project>{9f3232c4-60ac-4889-b07d-6b7e812ea6ef}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

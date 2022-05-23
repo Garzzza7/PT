@@ -22,6 +22,21 @@ namespace Service.CRUD
             this.dataLayer = dataLayer;
         }
 
+        private ClientDTO Map(IClient client)
+        {
+            if (client == null)
+            {
+                return null;
+            }
+
+            return new ClientDTO
+            {
+                ClientID = client.ClientID,
+                Name = client.Name,
+                Surname = client.Surname
+            };
+        }
+
         public void AddClient(string name, string surname)
         {
             dataLayer.AddClient(name, surname);
@@ -44,7 +59,7 @@ namespace Service.CRUD
 
         public ClientDTO GetClient(int id)
         {
-            return (ClientDTO) dataLayer.GetClient(id);
+            return Map(dataLayer.GetClient(id));
         }
 
         public IEnumerable<ClientDTO> GetAllClients()
@@ -54,7 +69,7 @@ namespace Service.CRUD
 
             foreach (var client in clients)
             {
-                result.Add((ClientDTO) client);
+                result.Add(Map(client));
             }
 
             return result;

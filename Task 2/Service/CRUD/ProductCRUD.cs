@@ -22,6 +22,21 @@ namespace Service.CRUD
             this.dataLayer = dataLayer;
         }
 
+        private ProductDTO Map(IProduct product)
+        {
+            if (product == null)
+            {
+                return null;
+            }
+
+            return new ProductDTO
+            {
+                ProductID = product.ProductID,
+                Price = product.Price,
+                Category = product.Category
+            };
+        }
+
         public void AddProduct(decimal price, string category)
         {
             dataLayer.AddProduct(price, category);
@@ -44,7 +59,7 @@ namespace Service.CRUD
 
         public ProductDTO GetProduct(int id)
         {
-            return (ProductDTO) dataLayer.GetProduct(id);
+            return Map(dataLayer.GetProduct(id));
         }
 
         public IEnumerable<ProductDTO> GetAllProducts()
@@ -54,7 +69,7 @@ namespace Service.CRUD
 
             foreach (var client in clients)
             {
-                result.Add((ProductDTO) client);
+                result.Add(Map(client));
             }
 
             return result;

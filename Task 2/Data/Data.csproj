@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -66,7 +66,6 @@
     </Compile>
     <Compile Include="DataAPI\DataLayerAbstractAPI.cs" />
     <Compile Include="DataAPI\IClient.cs" />
-    <Compile Include="DataAPI\Content.cs" />
     <Compile Include="DataAPI\IEvent.cs" />
     <Compile Include="DataAPI\IProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
