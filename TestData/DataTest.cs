@@ -14,25 +14,13 @@ namespace TestData
     {
         private DataLayerAbstractAPI dataLayer;
 
-        [TestMethod]
-        public void AddAndDeleteClientTest()
-        {
-            dataLayer = DataLayerAbstractAPI.CreateLayer();
-            dataLayer.AddClient("Kamil", "Ślimak");
-
-            Assert.AreEqual("Kamil", dataLayer.GetClient(3).Name);
-
-            dataLayer.DeleteClient(3);
-
-            Assert.IsNull(dataLayer.GetClient(3));
-        }
 
         [TestMethod]
         public void GetAllClientsTest()
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
 
-            Assert.AreEqual(3, dataLayer.GetAllClients().Count());
+            Assert.AreEqual(2, dataLayer.GetAllClients().Count());
         }
 
         [TestMethod]
@@ -48,7 +36,7 @@ namespace TestData
         {
             dataLayer = DataLayerAbstractAPI.CreateLayer();
 
-            Assert.AreEqual(3, dataLayer.GetAllProducts().Count());
+            Assert.AreEqual(2, dataLayer.GetAllProducts().Count());
         }
     }
 }
